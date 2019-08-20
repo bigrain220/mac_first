@@ -1,11 +1,24 @@
-var http = require("http");
+var fs = require('fs');
+var http = require('http');
 
-        http.createServer(function (request, response) {
-            response.writeHead(200, {
-                "Content-Type": "text/plain"
-            });
-            response.write("Welcome to Nodejs");
-            response.end();
-        }).listen(8000, "127.0.0.1");
+// 读文件
+fs.readFile('index.txt', function (error, data) {
+    // console.log(data.toString())
+})
+fs.writeFile('./file/file2.txt','i am ironman',function(error){
+    // console.log(error)
+})
 
-        console.log("Creat server on http://127.0.0.1:8000/");
+var server = http.createServer();
+
+server.on('request',function(request,response){
+    let url = request.url
+    console.log('收到客户端的请求了，请求路径是:'+url.toString());
+
+    response.write('hello');
+    response.write('world');
+    response.end();
+});
+server.listen(3000,function(){
+    console.log('服务器启动成功，可通过http://127.0.0.1:3000 来访问');
+});
