@@ -42,58 +42,31 @@
 </head>
 
 <body>
-    <div class="box">
-        <div class="item">
-            one
-            <ul>
-                <li class="list" data-type="1">one</li>
-                <li class="list" data-type="2">two</li>
-                <li class="list" data-type="3">three</li>
-                <li class="list" data-type="4">four</li>
-            </ul>
-        </div>
-        <div class="item">
-            two
-            <ul>
-                <li>one</li>
-                <li>two</li>
-                <li>three</li>
-                <li>four</li>
-            </ul>
-        </div>
-        <div class="item">
-            three
-            <ul>
-                <li>one</li>
-                <li>two</li>
-                <li>three</li>
-                <li>four</li>
-            </ul>
-        </div>
-    </div>
+    <input type="checkbox" name="f" id="" value="1">
+    <input type="checkbox" name="f" id="" value="2">
+    <input type="checkbox" name="f" id="" value="ddd">
+    <input type="checkbox" name="f" id="" value="4">
+</br>
+    <input type="checkbox" name="d" id="" value="11">
+    <input type="checkbox" name="d" id="" value="22">
+    <input type="checkbox" name="d" id="" value="33">
+    <input type="checkbox" name="d" id="" value="44">
     <script>
-        $(document).ready(function () {
-            $(document).on('click', function (e) {
-                var event = e.target;
-                if ($(event).hasClass('item')) {
-                    console.log($(event).children('ul').css('display'), 'display');
-                    $('.item').removeClass('active');
-                    $(event).addClass('active');
-                    $('.item').not('.active').children('ul').css('display', 'none');
-                    $(event).children('ul').toggle();
-                } else {
-                    $('ul').css('display', 'none');
-                }
-                if ($(event).hasClass('list')) {
-                    console.log($(event).attr('data-type'))
-                }
-            });
-
+        
+       function oop(params){
+        var arr=[];
+        $("input[name="+params+"]").each(function (index, ele) {
+            // element == this
+            $(ele).is(':checked') ? arr.push($(ele).attr('value')) : "";
         });
+        console.log(arr) 
+       }
 
+        $("input").on("click", function (e) {
+            var b= $(this).attr("name");
 
-
-
+            oop(b);
+        });
     </script>
 </body>
 
