@@ -2,9 +2,7 @@
   <div class="hello">
     <h1 @click="goIndex">{{ msg }}</h1>
     <h2 class="title">Essential Links</h2>
-   
     <h2 class="title">Ecosystem</h2>
-    
   </div>
 </template>
 
@@ -41,5 +39,8 @@ li {
   display: flex;
   justify-content: center;
   color: #42b983;
+}
+.hello{
+  text-align: center;
 }
 </style>

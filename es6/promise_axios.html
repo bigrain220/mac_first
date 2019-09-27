@@ -37,12 +37,10 @@
         axios.defaults.baseURL = 'https://apilightmv.aoscdn.com';
         const API = function(params){
             return  axios.get('/api/themes/', {})
-                   //.then(function (response) {
-                   //    console.log(response.data)
-                   //    return response.data
-                   // })
-                   .then(res=>res.data 
-                    )
+                   .then(function (response) {
+                      console.log(response.data)
+                      return response.data
+                   })
                     .catch(function (error) {
                         console.log(error);
                     });
@@ -50,6 +48,15 @@
         API().then(rs=>{
             console.log('data',rs)
         })
+
+    // 箭头函数简写：
+    // const API = params => {
+	// return axios.get('/userlanguage/list',{}).then(rs => rs.data);
+    // }
+    // API().then(rs=>{
+    //         console.log('data',rs)
+    // })
+
     </script>
 </body>
 
