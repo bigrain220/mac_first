@@ -82,5 +82,14 @@ export default {
   margin: 0 auto;
   max-width: 1520px;
 }
+.tag-list .el-tabs__nav-next,.tag-list .el-tabs__nav-prev{
+  line-height: 70px;
+}
+.tag-list .el-tabs__active-bar{
+  padding: 0 16px;
+}
+.tag-list .el-tabs__nav{
+  padding-left: 16px;
+}
 </style>
 

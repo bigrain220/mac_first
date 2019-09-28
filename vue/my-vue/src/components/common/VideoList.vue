@@ -141,6 +141,14 @@ export default {
 .card-box .space{
     content: ""; display: block; height:0; width:22%
 }
+@media screen and (max-width: 12000px) {
+   .card-box li .bot .time,.card-box li .bot .title {
+    font-size: 14px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow : ellipsis;
+  } 
+}
 </style>
 
 <style>
