@@ -34,15 +34,7 @@
     </el-form>
     <ul class="card-box">
       <li v-for="(item,index) in listData" :key="index" style="width:22%;">
-        <video
-          webkit-playsinline="true"
-          playsinline="true"
-          preload="none"
-          muted="muted"
-          loop="loop"
-          :poster="item.cover_thumb_url"
-          :src="item.video_url"
-        ></video>
+        <video webkit-playsinline="true" playsinline="true" preload="none" muted="muted" loop="loop" :poster="item.cover_thumb_url" :src="item.video_url"></video>
         <div class="bot">
           <div class="title">{{item.title}}</div>
           <div class="time" v-if="item.duration>0">{{item.duration | timeFilter}}</div>
@@ -53,8 +45,9 @@
       <li class="space"></li>
     </ul>
     <!--v-infinite-scroll-->
-    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="40"></div>
+    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="40">
       <div class="no-more" v-if="noMore">没有更多了。。。</div>
+    </div>
   </div>
 </template>
 
@@ -80,7 +73,7 @@ export default {
       rows: 16,
       total: "",
       busy: false,
-      noMore:false
+      noMore: false
     };
   },
   methods: {
@@ -122,13 +115,14 @@ export default {
     },
     loadMore() {
       if (this.total > this.page * this.rows) {
-        this.busy = true;this.noMore=false;
+        this.busy = true;
+        this.noMore = false;
         setTimeout(() => {
           this.page++;
           this.getThemes(true);
         }, 500);
-      }else{
-        this.noMore=true;
+      } else if(this.total) {
+        this.noMore = true;
       }
     }
   },
@@ -189,7 +183,7 @@ export default {
   height: 0;
   width: 22%;
 }
-.content-box .no-more{
+.content-box .no-more {
   text-align: center;
   color: #666;
   height: 40px;
@@ -215,6 +209,8 @@ export default {
 }
 .content-box .el-loading-spinner {
   position: fixed;
+  left: 50%;
+  text-align: unset;
 }
 .tag-form-inline {
   margin: 30px 0 20px 0;

@@ -6,14 +6,10 @@
       </span>
     </header>
     <el-tabs v-model="activeName" @tab-click="typeClick" class="tag-list">
-      <el-tab-pane
-        v-for="(item, index) in itemList"
-        :label="item.tag_name"
-        :name="item.brief_name+''"
-        :key="index"
-      ></el-tab-pane>
+      <el-tab-pane v-for="(item, index) in itemList" :label="item.tag_name" :name="item.brief_name+''" :key="index"></el-tab-pane>
     </el-tabs>
     <VideoList :clickBriefName="clickBriefName"></VideoList>
+    <img v-if="btnFlag" class="go-top" src="../assets/backTop.png" @click="backTop">
   </div>
 </template>
 <script>
@@ -22,6 +18,7 @@ import { tagsAPI } from "../api/api";
 export default {
   name: "Index",
   components: { VideoList },
+  inject: ["reload"],
   data() {
     return {
       language: "zh",
@@ -33,7 +30,8 @@ export default {
           brief_name: "all"
         }
       ],
-      clickBriefName: ""
+      clickBriefName: "",
+      btnFlag: false
     };
   },
   methods: {
@@ -49,9 +47,31 @@ export default {
     typeClick(tab, event) {
       this.clickBriefName = this.itemList[tab.index - 0].brief_name;
       if (this.clickBriefName == this.$route.params.name) {
-        this.$router.go(0);
+        this.reload();
       } else {
         this.$router.push("/themes/" + this.clickBriefName);
+      }
+    },
+
+    backTop() {
+      const that = this;
+      let timer = setInterval(() => {
+        let ispeed = Math.floor(-that.scrollTop / 5);
+        document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + ispeed;
+        if (that.scrollTop === 0) {
+          clearInterval(timer);
+        }
+      }, 16);
+    },
+
+    scrollToTop() {
+      const that = this;
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      that.scrollTop = scrollTop;
+      if (that.scrollTop > 60) {
+        that.btnFlag = true;
+      } else {
+        that.btnFlag = false;
       }
     }
   },
@@ -60,6 +80,12 @@ export default {
     this.getThemesData();
     this.activeName = this.$route.params.name;
     this.clickBriefName = this.$route.params.name;
+  },
+  mounted() {
+    window.addEventListener("scroll", this.scrollToTop);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.scrollToTop);
   }
 };
 </script>
@@ -102,6 +128,12 @@ export default {
 .tag-list {
   height: 70px;
   line-height: 70px;
+}
+.box .go-top{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
 }
 </style>
 <style>
