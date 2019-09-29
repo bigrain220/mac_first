@@ -2,6 +2,7 @@
   <div class="hello">
     <h1 @click="goIndex">{{ msg }}</h1>
     <h2 class="title">Essential Links</h2>
+    <br>
     <h2 class="title">Ecosystem</h2>
   </div>
 </template>
@@ -11,7 +12,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to My Vue.js App'
     }
   },
   methods:{
@@ -24,6 +25,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1{
+  margin:200px 0 100px 0;
+}
 h1, h2 {
   font-weight: normal;
 }

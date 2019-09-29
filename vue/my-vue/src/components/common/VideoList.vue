@@ -34,8 +34,15 @@
     </el-form>
     <ul class="card-box">
       <li v-for="(item,index) in listData" :key="index" style="width:22%;">
-        <video webkit-playsinline="true" playsinline="true" preload="none" muted="muted" loop="loop" :poster="item.cover_thumb_url"  :src="item.video_url">
-        </video>
+        <video
+          webkit-playsinline="true"
+          playsinline="true"
+          preload="none"
+          muted="muted"
+          loop="loop"
+          :poster="item.cover_thumb_url"
+          :src="item.video_url"
+        ></video>
         <div class="bot">
           <div class="title">{{item.title}}</div>
           <div class="time" v-if="item.duration>0">{{item.duration | timeFilter}}</div>
@@ -45,6 +52,9 @@
       <li class="space"></li>
       <li class="space"></li>
     </ul>
+    <!--v-infinite-scroll-->
+    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="40"></div>
+      <div class="no-more" v-if="noMore">没有更多了。。。</div>
   </div>
 </template>
 
@@ -53,6 +63,9 @@ import { themesAPI } from "../../api/api";
 import "../../utils/filters";
 export default {
   name: "VideoList",
+  props: {
+    clickBriefName: { type: String }
+  },
   data() {
     return {
       loading: false,
@@ -63,46 +76,77 @@ export default {
         order: "orderby"
       },
       listData: [],
-      total: ""
+      page: 1,
+      rows: 16,
+      total: "",
+      busy: false,
+      noMore:false
     };
   },
   methods: {
     selectChange() {
       //   console.log(this.selectForm);
+      this.page = 1;
       this.getThemes();
     },
-    getThemes(page,num) {
+    getThemes(flag) {
       // https://apilightmv.aoscdn.com/api/themes/?tag_id=&page=2&per_page=15&charge_type=0&composition_type=0&theme_resource_type=0&language=zh&version=3
       this.loading = true;
       var params = {
         tag_id: "",
-        page: page,
-        per_page: num,
+        page: this.page,
+        per_page: this.rows,
         charge_type: "0",
-        composition_type: "",
-        theme_resource_type: "",
-        theme_resolution: "",
-        order_field: "",
+        composition_type: this.selectForm.type,
+        theme_resource_type: this.selectForm.content,
+        theme_resolution: this.selectForm.size,
+        tag_brief_name: this.clickBriefName,
+        order_field: this.selectForm.order,
         language: "zh",
         version: "3"
       };
-      params.composition_type = this.selectForm.type;
-      params.theme_resource_type = this.selectForm.content;
-      params.order_field = this.selectForm.order;
-      params.theme_resolution = this.selectForm.size;
+      params.tag_brief_name == "all" ? (params.tag_brief_name = "") : "";
       themesAPI(params).then(rs => {
+        console.log(params);
         console.log(rs);
         this.total = rs.data.total;
-        // this.listData = rs.data.list;
         this.loading = false;
-        this.listData =[...this.listData,...rs.data.list]
+        if (flag) {
+          this.listData = [...this.listData, ...rs.data.list];
+          this.busy = false;
+        } else {
+          this.listData = rs.data.list;
+          this.busy = false;
+        }
       });
     },
-   
+    loadMore() {
+      if (this.total > this.page * this.rows) {
+        this.busy = true;this.noMore=false;
+        setTimeout(() => {
+          this.page++;
+          this.getThemes(true);
+        }, 500);
+      }else{
+        this.noMore=true;
+      }
+    }
+  },
+  watch: {
+    clickBriefName: function(val) {
+      (this.selectForm = {
+        content: "0",
+        type: "0",
+        size: "",
+        order: "orderby"
+      }),
+        (this.page = 1);
+      this.getThemes();
+    }
   },
 
   created() {
-    this.getThemes(1,16);
+    this.getThemes();
   }
 };
 </script>
@@ -112,7 +156,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  overflow:auto;
+  overflow: auto;
 }
 .card-box li {
   margin-bottom: 30px;
@@ -134,20 +178,32 @@ export default {
   padding: 0 20px;
   box-sizing: border-box;
 }
-.card-box li .bot .time,.card-box li .bot .title {
+.card-box li .bot .time,
+.card-box li .bot .title {
   height: 50px;
   line-height: 50px;
 }
-.card-box .space{
-    content: ""; display: block; height:0; width:22%
+.card-box .space {
+  content: "";
+  display: block;
+  height: 0;
+  width: 22%;
+}
+.content-box .no-more{
+  text-align: center;
+  color: #666;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 12000px) {
-   .card-box li .bot .time,.card-box li .bot .title {
+  .card-box li .bot .time,
+  .card-box li .bot .title {
     font-size: 14px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow : ellipsis;
-  } 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 </style>
 
@@ -156,6 +212,9 @@ export default {
   margin: 0 auto;
   width: 1520px;
   max-width: 90%;
+}
+.content-box .el-loading-spinner {
+  position: fixed;
 }
 .tag-form-inline {
   margin: 30px 0 20px 0;
