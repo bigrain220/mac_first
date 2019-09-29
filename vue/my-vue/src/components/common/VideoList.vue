@@ -100,17 +100,21 @@ export default {
       };
       params.tag_brief_name == "all" ? (params.tag_brief_name = "") : "";
       themesAPI(params).then(rs => {
+        var timer=""
         console.log(params);
         console.log(rs);
         this.total = rs.data.total;
-        this.loading = false;
-        if (flag) {
-          this.listData = [...this.listData, ...rs.data.list];
-          this.busy = false;
-        } else {
-          this.listData = rs.data.list;
-          this.busy = false;
-        }
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          this.loading = false;
+          if (flag) {
+            this.listData = [...this.listData, ...rs.data.list];
+            this.busy = false;
+          } else {
+            this.listData = rs.data.list;
+            this.busy = false;
+          }
+        }, 500);
       });
     },
     loadMore() {
@@ -121,7 +125,7 @@ export default {
           this.page++;
           this.getThemes(true);
         }, 500);
-      } else if(this.total) {
+      } else if (this.total) {
         this.noMore = true;
       }
     }
