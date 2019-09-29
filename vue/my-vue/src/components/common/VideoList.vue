@@ -34,7 +34,14 @@
     </el-form>
     <ul class="card-box">
       <li v-for="(item,index) in listData" :key="index" style="width:22%;">
-        <video webkit-playsinline="true" playsinline="true" preload="none" muted="muted" loop="loop" :poster="item.cover_thumb_url" :src="item.video_url"></video>
+        <video
+          preload="none"
+          muted="false"
+          loop="loop"
+          :poster="item.cover_thumb_url"
+          :src="item.video_url"
+          @click="videoClick(item)"
+        ></video>
         <div class="bot">
           <div class="title">{{item.title}}</div>
           <div class="time" v-if="item.duration>0">{{item.duration | timeFilter}}</div>
@@ -48,6 +55,20 @@
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="40">
       <div class="no-more" v-if="noMore">没有更多了。。。</div>
     </div>
+    <!-- dialog -->
+    <el-dialog :visible.sync="dialogVisible" class="video-dialog">
+      <video
+        autoplay
+        controls="controls"
+        controlslist="nodownload"
+        :poster="dialogData.cover_thumb_url"
+        :src="dialogData.video_url"
+      ></video>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -73,7 +94,9 @@ export default {
       rows: 16,
       total: "",
       busy: false,
-      noMore: false
+      noMore: false,
+      dialogVisible: false,
+      dialogData: {}
     };
   },
   methods: {
@@ -100,7 +123,7 @@ export default {
       };
       params.tag_brief_name == "all" ? (params.tag_brief_name = "") : "";
       themesAPI(params).then(rs => {
-        var timer=""
+        var timer = "";
         console.log(params);
         console.log(rs);
         this.total = rs.data.total;
@@ -128,6 +151,11 @@ export default {
       } else if (this.total) {
         this.noMore = true;
       }
+    },
+    videoClick(params) {
+      this.dialogVisible = true;
+      this.dialogData = params;
+      console.log(params);
     }
   },
   watch: {
@@ -160,6 +188,13 @@ export default {
   margin-bottom: 30px;
   cursor: pointer;
   box-shadow: 2px 2px 8px rgba(153, 153, 153, 0.3);
+}
+.card-box li:hover .bot {
+  background: linear-gradient(to right, #689cf9, #f9bbdd);
+  color: #fff;
+}
+.card-box li .bot:hover {
+  background: linear-gradient(to right, #4889ff, #ff9ad1);
 }
 .card-box li video {
   display: block;
@@ -197,11 +232,15 @@ export default {
 @media screen and (max-width: 12000px) {
   .card-box li .bot .time,
   .card-box li .bot .title {
-    font-size: 14px;
+    font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+.video-dialog video{
+  width: 70%;
+  height: 320px;
 }
 </style>
 
@@ -222,5 +261,11 @@ export default {
 }
 .tag-form-inline .el-form-item__content {
   width: 140px;
+}
+.tag-form-inline .el-form-item {
+  margin-right: 20px;
+}
+.video-dialog .el-dialog {
+  width: 900px;
 }
 </style>

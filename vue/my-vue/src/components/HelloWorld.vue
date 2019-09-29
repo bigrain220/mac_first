@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
-    <h1 @click="goIndex">{{ msg }}</h1>
-    <h2 class="title">Essential Links</h2>
+    <h1 @click="goIndex" class="title">{{ msg }}</h1>
+    <h2>Essential Links</h2>
     <br>
-    <h2 class="title">Ecosystem</h2>
+    <h2>Ecosystem</h2>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
 <style scoped>
 h1{
   margin:200px 0 100px 0;
+  cursor: pointer;
 }
 h1, h2 {
   font-weight: normal;
