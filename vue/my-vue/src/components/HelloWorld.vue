@@ -17,7 +17,7 @@ export default {
   },
   methods:{
     goIndex(){
-      this.$router.push('/index')
+      this.$router.push('/themes/all')
     }
   }
 }

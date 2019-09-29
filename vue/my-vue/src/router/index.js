@@ -12,17 +12,10 @@ export default new Router({
       component:resolve => require(['@/components/HelloWorld'],resolve)
     },
     {
-      path: '/index',
+      path: '/themes/:name',
       name: 'Index',
       component:resolve => require(['@/components/Index'],resolve),
-      children:[
-        {
-          path: 'themes/:name',
-          // component: CityList
-        }
-       ]
     },
-
 
   //   {
   //     path:'*',

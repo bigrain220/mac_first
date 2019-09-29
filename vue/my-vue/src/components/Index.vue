@@ -48,7 +48,11 @@ export default {
 
     typeClick(tab, event) {
       this.clickBriefName = this.itemList[tab.index - 0].brief_name;
-      this.$router.push("/index/themes/" + this.clickBriefName);
+      if (this.clickBriefName == this.$route.params.name) {
+        this.$router.go(0);
+      } else {
+        this.$router.push("/themes/" + this.clickBriefName);
+      }
     }
   },
 
@@ -56,7 +60,6 @@ export default {
     this.getThemesData();
     this.activeName = this.$route.params.name;
     this.clickBriefName = this.$route.params.name;
-    
   }
 };
 </script>
