@@ -34,14 +34,7 @@
     </el-form>
     <ul class="card-box">
       <li v-for="(item,index) in listData" :key="index" style="width:22%;">
-        <video
-          preload="none"
-          muted="false"
-          loop="loop"
-          :poster="item.cover_thumb_url"
-          :src="item.video_url"
-          @click="videoClick(item)"
-        ></video>
+        <video preload="none" muted="false" loop="loop" :poster="item.cover_thumb_url" :src="item.video_url" @click="videoClick(item)"></video>
         <div class="bot">
           <div class="title">{{item.title}}</div>
           <div class="time" v-if="item.duration>0">{{item.duration | timeFilter}}</div>
@@ -57,17 +50,21 @@
     </div>
     <!-- dialog -->
     <el-dialog :visible.sync="dialogVisible" class="video-dialog">
-      <video
-        autoplay
-        controls="controls"
-        controlslist="nodownload"
-        :poster="dialogData.cover_thumb_url"
-        :src="dialogData.video_url"
-      ></video>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-      </span>
+      <video autoplay controls="controls" controlslist="nodownload" :poster="dialogData.cover_thumb_url" :src="dialogData.video_url"></video>
+      <div class="dialog-right">
+        <h2>{{dialogData.title}}</h2>
+        <div class="right-text-box" v-if="dialogData.duration==0">
+          <div class="right-text"><span class="el-icon-time"></span> 时长不限</div>
+          <div class="right-text"><span class="el-icon-edit"></span> 支持照片/视频/文本</div>
+        </div>
+        <div class="right-text-box" v-if="dialogData.duration>0">
+          <div class="right-text"><span class="el-icon-time"></span>{{dialogData.duration | timeFilter}}</div>
+          <div class="right-text" v-show="dialogData.statistics.image>0"><span class="el-icon-camera"></span>{{dialogData.statistics.image}} 张照片</div>
+          <div class="right-text" v-show="dialogData.statistics.text>0"><span class="el-icon-edit-outline"></span>{{dialogData.statistics.text}} 处文字</div>
+          <div class="right-text" v-show="dialogData.statistics.video>0"><span class="el-icon-video-camera"></span>{{dialogData.statistics.video}} 张视频</div>
+        </div>
+        <el-button class="choose-templete" @click="dialogVisible = false">选择模板</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -210,6 +207,7 @@ export default {
   justify-content: space-between;
   padding: 0 20px;
   box-sizing: border-box;
+  font-size: 14px;
 }
 .card-box li .bot .time,
 .card-box li .bot .title {
@@ -229,7 +227,7 @@ export default {
   line-height: 40px;
   margin-bottom: 20px;
 }
-@media screen and (max-width: 12000px) {
+@media screen and (max-width: 1200px) {
   .card-box li .bot .time,
   .card-box li .bot .title {
     font-size: 12px;
@@ -238,9 +236,35 @@ export default {
     text-overflow: ellipsis;
   }
 }
-.video-dialog video{
+.video-dialog video {
   width: 70%;
-  height: 320px;
+  height: 330px;
+}
+.dialog-right .right-text-box {
+  text-align: left;
+  margin-top: 30px;
+}
+.dialog-right .right-text {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}
+.dialog-right .right-text span {
+  padding: 0 10px;
+  font-size: 16px;
+}
+.dialog-right .choose-templete {
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  width: calc(30% - 50px);
+  background: linear-gradient(to right, #689cf9, #f9bbdd);
+
+  border-radius: 32px;
+  color: #fff;
+}
+.dialog-right .choose-templete:hover {
+  background: linear-gradient(to right, #4889ff, #ff9ad1);
 }
 </style>
 
@@ -267,5 +291,18 @@ export default {
 }
 .video-dialog .el-dialog {
   width: 900px;
+}
+.video-dialog .el-dialog__body {
+  padding: 10px 20px 25px 20px;
+  clear: both;
+  overflow: hidden;
+  position: relative;
+}
+.video-dialog .el-dialog__body .dialog-right {
+  float: right;
+  text-align: left;
+  width: 30%;
+  padding-left: 20px;
+  box-sizing: border-box;
 }
 </style>
