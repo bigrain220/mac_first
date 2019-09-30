@@ -2,14 +2,14 @@
   <div class="box">
     <header class="head">
       <span>
-        <marquee direction="left">welcome to william's vue ,this is a perfect project!</marquee>
+        <marquee direction="left">welcome to william's project which is made of Vue!</marquee>
       </span>
     </header>
     <el-tabs v-model="activeName" @tab-click="typeClick" class="tag-list">
       <el-tab-pane v-for="(item, index) in itemList" :label="item.tag_name" :name="item.brief_name+''" :key="index"></el-tab-pane>
     </el-tabs>
     <VideoList :clickBriefName="clickBriefName"></VideoList>
-    <img v-if="btnFlag" class="go-top" src="../assets/backTop.png" @click="backTop">
+    <div v-if="btnFlag" class="go-top el-icon-caret-top"  @click="backTop"></div>
   </div>
 </template>
 <script>
@@ -134,6 +134,18 @@ export default {
   right: 20px;
   bottom: 20px;
   cursor: pointer;
+  font-size: 22px;
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #409eff;
+  text-align: center;
+  box-shadow: 0 0 6px rgba(0,0,0,.12);
+}
+.box .go-top:hover{
+  background: rgba(0,0,0,.12);
 }
 </style>
 <style>

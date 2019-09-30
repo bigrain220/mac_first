@@ -46,11 +46,11 @@
     </ul>
     <!--v-infinite-scroll-->
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="40">
-      <div class="no-more" v-if="noMore">没有更多了。。。</div>
+      <div class="no-more" v-if="noMore">到底咯...<span class="el-icon-toilet-paper"></span></div>
     </div>
     <!-- dialog -->
-    <el-dialog :visible.sync="dialogVisible" class="video-dialog">
-      <video autoplay controls="controls" controlslist="nodownload" :poster="dialogData.cover_thumb_url" :src="dialogData.video_url"></video>
+    <el-dialog :visible.sync="dialogVisible" class="video-dialog" @closed="handleClose">
+      <video autoplay controls="controls" controlslist="nodownload" :poster="dialogData.cover_thumb_url" :src="dialogData.video_url" ref="dialogVideo"></video>
       <div class="dialog-right">
         <h2>{{dialogData.title}}</h2>
         <div class="right-text-box" v-if="dialogData.duration==0">
@@ -153,6 +153,12 @@ export default {
       this.dialogVisible = true;
       this.dialogData = params;
       console.log(params);
+      setTimeout(() => {
+        this.$refs.dialogVideo.src=params.video_url;
+      }, 0)
+    },
+    handleClose(){
+      this.$refs.dialogVideo.src="";
     }
   },
   watch: {
@@ -222,7 +228,7 @@ export default {
 }
 .content-box .no-more {
   text-align: center;
-  color: #666;
+  color: #999;
   height: 40px;
   line-height: 40px;
   margin-bottom: 20px;
@@ -304,5 +310,10 @@ export default {
   width: 30%;
   padding-left: 20px;
   box-sizing: border-box;
+}
+.video-dialog .el-dialog__headerbtn{
+  font-size: 24px;
+  cursor: pointer;
+  top:6px;
 }
 </style>
