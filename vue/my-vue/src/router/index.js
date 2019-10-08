@@ -15,6 +15,7 @@ export default new Router({
       path: '/themes/:name',
       name: 'Index',
       component:resolve => require(['@/components/Index'],resolve),
+      meta: {requireAuth: true}
     },
 
   //   {
