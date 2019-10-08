@@ -1,7 +1,7 @@
 export default {
-    setCookie(cname, cvalue, exdays) {
+    setCookie(cname, cvalue, exminutes) {
         var d = new Date();
-        d.setTime(d.getTime() + (exdays * 60 * 1000));
+        d.setTime(d.getTime() + (exminutes * 60 * 1000));
         var expires = "expires=" + d.toGMTString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     },
