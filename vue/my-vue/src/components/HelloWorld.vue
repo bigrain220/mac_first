@@ -20,7 +20,7 @@
 
 <script>
 import { sessionAPI } from "../api/api";
-import  util  from "../utils/utils";
+import  utils  from "../utils/utils";
 export default {
   name: "HelloWorld",
   data() {
@@ -45,7 +45,7 @@ export default {
       sessionAPI(params).then(rs => {
         // console.log(rs);
         if(rs.status=="1"){
-            util.setCookie("session_val", rs.data.user.api_token,5);
+            utils.setCookie("session_val", rs.data.user.api_token,5);
             this.goIndex();
         }else{
            this.$message({
@@ -59,7 +59,7 @@ export default {
        this.form.identity_token="";
     },
     logout(){
-      this.$confirm('此操作将删除session_val:'+util.getCookie('session_val')+'的cookie', '提示', {
+      this.$confirm('此操作将删除session_val:'+utils.getCookie('session_val')+'的cookie', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -68,7 +68,7 @@ export default {
             type: 'success',
             message: '删除成功!'
           });
-           util.clearCookie('session_val');
+           utils.clearCookie('session_val');
            history.go(0);
         }).catch(() => {
           this.$message({
@@ -79,7 +79,7 @@ export default {
     }
   },
   created(){
-     util.getCookie("session_val")==""?this.hasToken=false:this.hasToken=true;
+     utils.getCookie("session_val")==""?this.hasToken=false:this.hasToken=true;
   }
 };
 </script>

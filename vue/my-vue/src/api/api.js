@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import utils from '../utils/utils'
+import utils from '../utils/utils.js'
 import router from '../router/index.js'
 import { MessageBox } from 'element-ui'
 
