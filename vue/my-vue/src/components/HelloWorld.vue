@@ -82,10 +82,13 @@ export default {
      utils.getCookie("session_val")==""?this.hasToken=false:this.hasToken=true;
   }
 };
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang='scss' scoped>
+$font-size:18px;
 h1 {
   margin: 200px 0 100px 0;
   cursor: pointer;
@@ -111,7 +114,7 @@ li {
   text-align: center;
 }
 .session {
-  font-size: 18px;
+  font-size: $font-size;
   color: rgb(92, 166, 250);
   cursor: pointer;
   font-weight: bold;

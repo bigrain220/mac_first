@@ -101,21 +101,6 @@ export default {
   line-height: 70px;
   font-weight: bold;
   font-size: 16px;
-  background: -webkit-linear-gradient(
-    left top,
-    rgb(196, 74, 95),
-    rgb(68, 68, 139)
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    bottom right,
-    rgb(196, 74, 95),
-    rgb(68, 68, 139)
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    bottom right,
-    rgb(196, 74, 95),
-    rgb(68, 68, 139)
-  ); /* Firefox 3.6 - 15 */
   background: linear-gradient(
     to bottom right,
     rgb(196, 74, 95),

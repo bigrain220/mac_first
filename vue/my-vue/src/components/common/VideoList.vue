@@ -154,11 +154,11 @@ export default {
       this.dialogData = params;
       console.log(params);
       setTimeout(() => {
-        this.$refs.dialogVideo.src=params.video_url;
-      }, 0)
+        this.$refs.dialogVideo.src = params.video_url;
+      }, 0);
     },
-    handleClose(){
-      this.$refs.dialogVideo.src="";
+    handleClose() {
+      this.$refs.dialogVideo.src = "";
     }
   },
   watch: {
@@ -180,45 +180,50 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+$light-color: linear-gradient(to right, #689cf9, #f9bbdd);
+$deep-color: linear-gradient(to right, #4889ff, #ff9ad1);
+// 混合器
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
 .card-box {
-  display: flex;
+  @include flex-between;
   flex-wrap: wrap;
-  justify-content: space-between;
   overflow: auto;
-}
-.card-box li {
-  margin-bottom: 30px;
-  cursor: pointer;
-  box-shadow: 2px 2px 8px rgba(153, 153, 153, 0.3);
-}
-.card-box li:hover .bot {
-  background: linear-gradient(to right, #689cf9, #f9bbdd);
-  color: #fff;
-}
-.card-box li .bot:hover {
-  background: linear-gradient(to right, #4889ff, #ff9ad1);
-}
-.card-box li video {
-  display: block;
-  width: 100%;
-  height: calc(100% - 50px);
-}
-.card-box li .bot {
-  background: #fff;
-  text-align: center;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-.card-box li .bot .time,
-.card-box li .bot .title {
-  height: 50px;
-  line-height: 50px;
+  li {
+    margin-bottom: 30px;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px rgba(153, 153, 153, 0.3);
+    &:hover .bot {
+      background: $light-color;
+      color: #fff;
+      &:hover {
+        background: $deep-color;
+      }
+    }
+    video {
+      display: block;
+      width: 100%;
+      height: calc(100% - 50px);
+    }
+    .bot {
+      background: #fff;
+      text-align: center;
+      width: 100%;
+      height: 50px;
+      @include flex-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+      font-size: 14px;
+      .time,
+      .title {
+        height: 50px;
+        line-height: 50px;
+      }
+    }
+  }
 }
 .card-box .space {
   content: "";
@@ -264,13 +269,13 @@ export default {
   right: 30px;
   bottom: 20px;
   width: calc(30% - 50px);
-  background: linear-gradient(to right, #689cf9, #f9bbdd);
+  background: $light-color;
 
   border-radius: 32px;
   color: #fff;
 }
 .dialog-right .choose-templete:hover {
-  background: linear-gradient(to right, #4889ff, #ff9ad1);
+  background: $deep-color;
 }
 </style>
 
@@ -311,9 +316,9 @@ export default {
   padding-left: 20px;
   box-sizing: border-box;
 }
-.video-dialog .el-dialog__headerbtn{
+.video-dialog .el-dialog__headerbtn {
   font-size: 24px;
   cursor: pointer;
-  top:6px;
+  top: 6px;
 }
 </style>
