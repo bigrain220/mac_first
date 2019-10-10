@@ -130,4 +130,9 @@ li {
 .el-message-box__message p{
    word-break:break-all;
 }
+@media screen and (max-width: 1050px) {
+  .hello .el-dialog{
+    width: 80%;
+  }
+}
 </style>

@@ -247,6 +247,17 @@ $deep-color: linear-gradient(to right, #4889ff, #ff9ad1);
     text-overflow: ellipsis;
   }
 }
+@media screen and (max-width: 1050px) {
+  .card-box{
+    margin-top: 30px;
+  }
+  .card-box>li{
+    width: 100%!important;
+  }
+  .content-box form{
+    display: none;
+  }
+}
 .video-dialog video {
   width: 70%;
   height: 330px;
