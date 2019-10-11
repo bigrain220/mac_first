@@ -7,7 +7,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path:'/',
+      redirect: '/index'
+    },
+    {
+      path: '/index',
       name: 'HelloWorld',
       component:resolve => require(['@/components/HelloWorld'],resolve)
     },

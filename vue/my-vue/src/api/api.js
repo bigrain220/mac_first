@@ -18,7 +18,7 @@ axios.interceptors.response.use(function (response) {
         MessageBox.alert('您已下线，请重新登录', '下线提示', {
             confirmButtonText: '确定',
             callback: action => {
-              router.push({ path:'/'})
+              router.push({ path:'/index'})
             }
           });
     }else{
