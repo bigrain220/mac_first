@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 构造函数
+        function Cat(name) {
+            this.name = name;
+        }
+        Cat.prototype.say = function () {
+            return "Hello," + this.name + "!"
+        }
+        var kitty = new Cat('Kitty');
+        var doraemon = new Cat('哆啦A梦');
+
+        if (kitty && kitty.name === 'Kitty' && kitty.say && typeof kitty.say === 'function' && kitty.say() ===
+            'Hello,Kitty!' && kitty.say === doraemon.say) {
+            console.log('测试通过!');
+        } else {
+            console.log('测试失败!');
+        }
+        //封装构造函数
+        function Student(props) {
+            this.name = props.name || '匿名'; // 默认值为'匿名'
+            this.grade = props.grade || 1; // 默认值为1
+        }
+
+        Student.prototype.hello = function () {
+            console.log('Hello, ' + this.name + '!');
+        };
+
+        function createStudent(props) {
+            return new Student(props || {})
+        }
+        var xiaoming = createStudent({
+            name: '小明'
+        });
+        xiaoming.grade; // 1
+        xiaoming.hello();
+    </script>
+</body>
+
+</html>
