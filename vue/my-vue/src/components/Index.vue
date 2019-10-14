@@ -13,11 +13,12 @@
   </div>
 </template>
 <script>
-import VideoList from "../components/common/VideoList";
+// import VideoList from "../components/common/VideoList";
 import { tagsAPI } from "../api/api";
 export default {
   name: "Index",
-  components: { VideoList },
+  // components: { VideoList },
+  components: { VideoList:()=>import("../components/common/VideoList")},
   inject: ["reload"],
   data() {
     return {
