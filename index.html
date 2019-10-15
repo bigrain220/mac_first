@@ -7,37 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  
     <style>
-    
+
     </style>
 </head>
- 
+
 <body>
-    <input type="checkbox" name="f" id="" value="1">
-    <input type="checkbox" name="f" id="" value="2">
-    <input type="checkbox" name="f" id="" value="ddd">
-    <input type="checkbox" name="f" id="" value="4">
-</br>
-    <input type="checkbox" name="d" id="" value="11">
-    <input type="checkbox" name="d" id="" value="22">
-    <input type="checkbox" name="d" id="" value="33">
-    <input type="checkbox" name="d" id="" value="44">
+
+
     <script>
-        
-       function oop(params){
-        var arr=[];
-        $("input[name="+params+"]").each(function (index, ele) {
-            // element == this
-            $(ele).is(':checked') ? arr.push($(ele).attr('value')) : "";
-        });
-        console.log(arr) 
-       }
-
-        $("input").on("click", function (e) {
-            var b= $(this).attr("name");
-
-            oop(b);
-        });
+        var arr = [1, 2, 3, 4, 5];
+        arr.map((item, index)=>{
+            console.log('index:' + index, 'value:' + item)
+        })
     </script>
 </body>
 
