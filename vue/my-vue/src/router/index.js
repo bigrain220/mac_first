@@ -21,6 +21,11 @@ export default new Router({
       component:resolve => require(['@/components/Index'],resolve),
       meta: {requireAuth: true}
     },
+    {
+      path: '/test',
+      name: 'Test',
+      component:resolve => require(['@/components/test'],resolve),
+    },
 
   //   {
   //     path:'*',
