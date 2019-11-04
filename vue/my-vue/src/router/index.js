@@ -27,9 +27,9 @@ export default new Router({
       component:resolve => require(['@/components/test'],resolve),
     },
 
-  //   {
-  //     path:'*',
-  //     redirect:'/'
-  // }
+    {
+      path:'*',
+      redirect:'/'
+  }
   ]
 })
