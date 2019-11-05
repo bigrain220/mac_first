@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <img :src="src" alt="">
     <h1 @click="goIndex" class="title">{{ msg }}</h1>
     <br>
     <div class="session"><span @click="dialogFormVisible = true">login</span><span v-show="hasToken"></span><span @click="logout" v-show="hasToken">logout</span></div>
@@ -26,6 +27,7 @@ export default {
   data() {
     return {
       msg: "Welcome to My Vue.js App",
+      src:"./static/img/logo.png",
       form:{
         "identity_token":""
       },
@@ -89,8 +91,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
 $font-size:18px;
+.hello img{
+  margin:100px 0 30px 0;
+}
 h1 {
-  margin: 200px 0 100px 0;
+  margin-bottom:60px;
   cursor: pointer;
 }
 h1,
