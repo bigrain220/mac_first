@@ -233,7 +233,7 @@ $deep-color: linear-gradient(to right, #4889ff, #ff9ad1);
 }
 .content-box .no-more {
   text-align: center;
-  color: #999;
+  color: #666;
   height: 40px;
   line-height: 40px;
   margin-bottom: 20px;

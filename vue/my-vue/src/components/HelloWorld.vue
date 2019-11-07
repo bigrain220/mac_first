@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
-    <img :src="src" alt="">
+    <router-link to="/test">
+      <img :src="src" alt="">
+    </router-link>
     <h1 @click="goIndex" class="title">{{ msg }}</h1>
     <br>
     <div class="session"><span @click="dialogFormVisible = true">login</span><span v-show="hasToken"></span><span @click="logout" v-show="hasToken">logout</span></div>
