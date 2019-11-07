@@ -9,6 +9,7 @@ import vueiInfinite from 'vue-infinite-scroll'
 import util from './utils/utils.js'
 import { Message } from 'element-ui';
 import 'babel-polyfill'
+import store from './vuex/index'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
@@ -32,10 +33,12 @@ router.beforeEach((to, from, next) => {
 
 
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
