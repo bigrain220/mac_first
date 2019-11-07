@@ -24,7 +24,7 @@ const store = new Vuex.Store({
   },
   actions: {
     selectCity(context, params) {
-      context.commit('setCity', params.city);
+      // context.commit('setCity', params.city);
       context.commit('setCityID', params.id);
     }
   }

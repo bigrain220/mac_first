@@ -1,27 +1,31 @@
 <template>
   <div>
-    <keywordsTxt @getTxt="getTxt" :indexData="2"></keywordsTxt>
+    <!-- <keywordsTxt @getTxt="getTxt" :indexData="2"></keywordsTxt> -->
+    <!-- <vuexTemplate></vuexTemplate> -->
   </div>
 </template>
 <script>
+import {mapState,mapGetters,mapActions} from 'vuex'; 
 export default {
   components: {
-    keywordsTxt: () => import("./common/keywordsTxt")
+    keywordsTxt: () => import("./common/keywordsTxt"),
+    vuexTemplate: () => import("./common/vuex"),
   },
   data() {
     return {
-      num: 10
+     
     };
   },
+
   methods: {
     getTxt(params) {
       console.log(params, "accept");
-    }
+    },
+
+
   },
   created(){
-    console.log(this.$store.state);
-    this.$store.commit('setCityID',6);
-    console.log(this.$store.state);
+    
   },
   //路由跳转确认
   // beforeRouteLeave(to, from, next) {
