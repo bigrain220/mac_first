@@ -21,7 +21,8 @@ export default {
   },
   computed: {
     ...mapState({
-      cId: state => state.cityID
+      cId: state => state.cityID,
+      cname:state => state.city
     })
   },
   methods: {
@@ -31,15 +32,22 @@ export default {
     changeId() {
       this.$store.dispatch("selectCity", { id: this.idValue });
       this.$message.success('成功修改为：'+this.$store.state.cityID);
+      
     }
   },
   created() {
-    console.log(this.$store.state);
-    this.$store.commit("setCityID", 6);
-    console.log(this.$store.state);
-    this.$store.dispatch("selectCity", { id: 110 });
+    //执行mutations
+    // this.$store.commit("setCityID", 6);
+    //执行actions
+    // this.$store.dispatch("selectCity", { id: 110 });
     console.log(this.$store.state);
     this.idValue=this.$store.state.cityID;
+    //在app.vue中设置了sessionStorage;
+    if(sessionStorage.getItem('store')){
+      var _store = JSON.parse(sessionStorage.getItem('store')).cityID;
+      this.idValue = _store;
+    }
+
   }
 };
 </script>

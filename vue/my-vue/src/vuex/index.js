@@ -29,5 +29,8 @@ const store = new Vuex.Store({
     }
   }
 });
-
+//获取state的方法: this.$store.state 
+//修改state的方法：1.用this.$store.commit执行mutation里的方法 2.用 this.$store.dispatch执行actions里的方法
+// this.$store.commit("setCityID", 6);
+// this.$store.dispatch("selectCity", { id: 110 });
 export default store;
