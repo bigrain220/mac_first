@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <keywordsTxt @getTxt="getTxt" :indexData="2"></keywordsTxt> -->
-    <!-- <vuexTemplate></vuexTemplate> -->
+    <vuexTemplate></vuexTemplate>
   </div>
 </template>
 <script>
