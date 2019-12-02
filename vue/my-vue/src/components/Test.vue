@@ -2,6 +2,10 @@
   <div>
     <!-- <keywordsTxt @getTxt="getTxt" :indexData="2"></keywordsTxt> -->
     <!-- <vuexTemplate></vuexTemplate> -->
+    <div>
+     <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
+     <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
+     </div>
   </div>
 </template>
 <script>
@@ -10,10 +14,15 @@ export default {
   components: {
     keywordsTxt: () => import("./common/keywordsTxt"),
     vuexTemplate: () => import("./common/vuex"),
+    imgUpload:()=>import("./common/imgUpload")
   },
   data() {
     return {
-     
+     uploadProps:{
+        uploadSure: false,
+        width: 100,
+        height: 100
+     }
     };
   },
 
@@ -21,7 +30,9 @@ export default {
     getTxt(params) {
       console.log(params, "accept");
     },
-
+    mapEvent(data){
+      console.log(data);
+    }
 
   },
   created(){
