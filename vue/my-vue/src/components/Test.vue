@@ -1,11 +1,15 @@
 <template>
   <div>
     <!-- <keywordsTxt @getTxt="getTxt" :indexData="2"></keywordsTxt> -->
+<<<<<<< HEAD
     <!-- <vuexTemplate></vuexTemplate> -->
     <div>
      <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
      <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
      </div>
+=======
+    <vuexTemplate></vuexTemplate>
+>>>>>>> 7a96ea0014507ec08a2d833e0dd4c4579715691a
   </div>
 </template>
 <script>
