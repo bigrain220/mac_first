@@ -1,8 +1,9 @@
+<!-- 使用方法 -->
+<!-- 1.组件中使用：先引入组件,然后渲染 <to-top></to-top> -->
+<!-- 2.整个项目中使用：在通用组件(比如home.vue)中引入这个组件,然后渲染 <to-top></to-top> -->
+
 <template>
     <div v-if="btnFlag" class="go-top el-icon-caret-top" @click="backTop"></div>
-    <!-- 使用方法 -->
-    <!-- 1.组件中使用：先引入组件,然后渲染 <to-top></to-top> -->
-    <!-- 2.整个项目中使用：在通用组件(比如home.vue)中引入这个组件,然后渲染 <to-top></to-top> -->
 </template>
 <script>
 export default {

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <!-- <keywordsTxt @getTxt="getTxt" :indexData="2"></keywordsTxt> -->
+    <!-- <keywordsTxt @getTxt="getTxt"></keywordsTxt> -->
     <!-- <vuexTemplate></vuexTemplate> -->
-    <div>
+    <!-- <div>
      <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
      <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
-     </div>
+     </div> -->
   </div>
 </template>
 <script>
@@ -38,7 +38,7 @@ export default {
   created(){
     
   },
-  // 路由跳转确认
+   // 路由跳转确认
   beforeRouteLeave(to, from, next) {
     const answer = window.confirm("当前页面数据未保存，确定要离开？");
     if (answer) {
@@ -47,9 +47,10 @@ export default {
       next(false);
     }
   },
-  // 浏览器刷新确认
+  // 浏览器刷新确认 
   mounted() {
     var _this=this;
+    console.log(_this.$route.fullPath)
     window.onbeforeunload = function(e) {
       if (_this.$route.fullPath == '/test') {
         e = e || window.event;

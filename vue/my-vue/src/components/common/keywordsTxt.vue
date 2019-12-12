@@ -1,3 +1,16 @@
+<!-- 用法： -->
+<!-- 
+template结构：
+ <keywordsTxt @getTxt="getTxt"></keywordsTxt> 
+data 数据：
+
+methods方法：
+   getTxt(params) {
+      console.log(params, "accept");
+    },
+-->
+
+
 <template>
   <el-upload action="/" ref="upload" accept=".txt" :before-upload="beforeUpload"  :multiple="false" 
      :on-change="addhandlefileChange">
@@ -8,7 +21,6 @@
 <script>
 export default {
   name: "keywordsTxt",
-  props: { indexData: { type: Number } },
   data() {
     return {
       textData: "",
@@ -30,9 +42,9 @@ export default {
         });
         // console.log(cont);
         this.textData = cont.split(/\r\n|[\r\n]/);
-        console.log(this.textData, this.indexData);
+        console.log(this.textData);
         if(this.shouldEmit==true){
-            this.$emit("getTxt", this.textData, this.indexData);
+            this.$emit("getTxt", this.textData);
         }
       };
       rd.readAsBinaryString(f);

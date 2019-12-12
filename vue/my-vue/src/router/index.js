@@ -26,7 +26,10 @@ export default new Router({
       name: 'Test',
       component:resolve => require(['@/components/test'],resolve),
     },
-
+    {
+      path: '/vuewaterfall2',
+      component:resolve => require(['@/components/common/vue-waterfall2'],resolve),
+    },
     {
       path:'*',
       redirect:'/'
