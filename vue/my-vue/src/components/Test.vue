@@ -10,6 +10,7 @@
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
      </div> -->
+     <!-- <date-picker></date-picker> -->
   </div>
 </template>
 <script>
@@ -19,7 +20,8 @@ export default {
     keywordsTxt: () => import("./common/keywordsTxt"),
     vuexTemplate: () => import("./common/vuex"),
     imgUpload:()=>import("./common/imgUpload"),
-    zDialog:()=>import("./common/dialog")
+    zDialog:()=>import("./common/dialog"),
+    datePicker:()=>import("./common/datePicker")
   },
   data() {
     return {
