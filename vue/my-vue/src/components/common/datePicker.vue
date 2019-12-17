@@ -6,6 +6,10 @@ data 数据：
   
 methods方法：
  
+ 知识补充：
+ new Date() //返回Date对象
+ new Date(时间戳)  //把时间戳转为Date对象
+ Date.now() 或者 new Date().getTime()  //获取当前时间戳(毫秒)   返回从 1970 年 1 月 1 日至今的毫秒数
 -->
 
 
