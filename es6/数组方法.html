@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //--------------------------- fill------------------------------
+        let arr = Array.of(1, 2, 3, 4);
+        // 参数1：用来填充的值
+        // 参数2：被填充的起始索引
+        // 参数3(可选)：被填充的结束索引，默认为数组末尾
+        var arr1 = arr.fill(0, 1, 2) 
+        console.log(arr,arr1); // [1, 0, 3, 4]
+        var arr2 = Array(5).fill({name:"yyh",sex:"man"})
+        console.log(arr2)
+    </script>
+</body>
+
+</html>

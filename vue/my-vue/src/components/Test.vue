@@ -2,9 +2,13 @@
   <div>
     <!-- <keywordsTxt @getTxt="getTxt"></keywordsTxt> -->
     <!-- <vuexTemplate></vuexTemplate> -->
-    <!-- <div>
+    <!-- <div class="img-upload">
      <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
      <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
+     </div> -->
+     <!-- <div class="z-dialog">
+     <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
+     <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
      </div> -->
   </div>
 </template>
@@ -14,7 +18,8 @@ export default {
   components: {
     keywordsTxt: () => import("./common/keywordsTxt"),
     vuexTemplate: () => import("./common/vuex"),
-    imgUpload:()=>import("./common/imgUpload")
+    imgUpload:()=>import("./common/imgUpload"),
+    zDialog:()=>import("./common/dialog")
   },
   data() {
     return {
@@ -22,6 +27,12 @@ export default {
         uploadSure: false,
         width: 100,
         height: 100
+     },
+     dialogObj:{
+       id:110
+     },
+     dialogVisible:{
+       dialog1:false
      }
     };
   },
@@ -32,6 +43,10 @@ export default {
     },
     mapEvent(data){
       console.log(data);
+    },
+    dialogEvent(data){
+      console.log(data)
+      this.dialogVisible.dialog1=data;
     }
 
   },
