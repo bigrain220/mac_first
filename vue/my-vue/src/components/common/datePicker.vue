@@ -46,13 +46,13 @@ export default {
       if (val === 0) {
         this.value = [new Date(nowTime), new Date(nowTime)];
       } else if (val === -1) {
-        start = nowTime - 24 * 60 * 60 * 1000;
+        start = nowTime - 60 * 60 * 1000 * 24;
         this.value = [new Date(start), new Date(nowTime)];
       } else if (val === -6) {
-        start = nowTime - 7 * 24 * 60 * 60 * 1000;
+        start = nowTime - 60 * 60 * 1000 * 24 * 7;
         this.value = [new Date(start), new Date(nowTime)];
       } else if (val === -29) {
-        start = nowTime - 29 * 24 * 60 * 60 * 1000;
+        start = nowTime - 60 * 60 * 1000 * 24 * 29;
         this.value = [new Date(start), new Date(nowTime)];
       }
     }
