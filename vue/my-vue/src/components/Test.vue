@@ -11,10 +11,11 @@
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
      </div> -->
     <!-- <date-picker></date-picker> -->
-    <div>
+    <!-- <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
       <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
-    </div>
+    </div> -->
+    <filterTable></filterTable>
   </div>
 </template>
 <script>
@@ -27,7 +28,8 @@ export default {
     imgUpload: () => import("./common/imgUpload"),
     zDialog: () => import("./common/dialog"),
     datePicker: () => import("./common/datePicker"),
-    lineEcharts: () => import("./common/lineEcharts")
+    lineEcharts: () => import("./common/lineEcharts"),
+    filterTable:()=>import("./common/table")
   },
   data() {
     return {
@@ -46,7 +48,7 @@ export default {
         nameArr: [],
         x_data: [],
         y_data: [],
-        colorArr: ["#4fa8f9", "#6ec71e", "#EE6363", "#6dc78e"],
+        colorArr: ["#4fa8f9", "#6ec71e", "#EE6363", "#6dc78e","#000"],
         inter_val: 1,
         self: {//自定义配置
           title: {
@@ -71,7 +73,7 @@ export default {
     dealLineData() {
       this.lineEchartsObj.x_data = [];
       this.lineEchartsObj.y_data = [];
-      console.log(lineData);
+      // console.log(lineData);虚拟数据
       var res = lineData.data.line;
       this.lineEchartsObj.nameArr = res.fields;
       res.items[0].map((item, index) => {
