@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <keywordsTxt @getTxt="getTxt"></keywordsTxt> -->
-    <!-- <vuexTemplate></vuexTemplate> -->
+    <vuexTemplate></vuexTemplate>
     <!-- <div class="img-upload">
      <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
      <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
@@ -15,7 +15,10 @@
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
       <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
     </div> -->
+<<<<<<< HEAD
     <filterTable></filterTable>
+=======
+>>>>>>> f00edf7d17a0936e012565226a19946a40d95090
   </div>
 </template>
 <script>

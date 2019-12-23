@@ -6,13 +6,13 @@ const store = new Vuex.Store({
     city: '深圳',
     cityID: "1"
   },
-  getters:{
-    getCity(state) {  //方法名随意,主要是来承载变化的city的值
-        return state.city
-     },
-     getCityId(){  //方法名随意,主要是用来承载变化的cityID的值
-        return state.cityID
-     }
+  getters: {
+    getCity(state) { //方法名随意,主要是来承载变化的city的值
+      return state.city
+    },
+    getCityId() { //方法名随意,主要是用来承载变化的cityID的值
+      return state.cityID
+    }
   },
   mutations: {
     setCity(state, value) {
@@ -24,7 +24,9 @@ const store = new Vuex.Store({
   },
   actions: {
     selectCity(context, params) {
-      // context.commit('setCity', params.city);
+      context.commit('setCity', params.city);
+    },
+    selectCityID(context, params) {
       context.commit('setCityID', params.id);
     }
   }
