@@ -15,10 +15,61 @@
         // 参数1：用来填充的值
         // 参数2：被填充的起始索引
         // 参数3(可选)：被填充的结束索引，默认为数组末尾
-        var arr1 = arr.fill(0, 1, 2) 
-        console.log(arr,arr1); // [1, 0, 3, 4]
-        var arr2 = Array(5).fill({name:"yyh",sex:"man"})
-        console.log(arr2)
+        var arr1 = arr.fill(0, 1, 2)
+        // console.log(arr,arr1); // [1, 0, 3, 4]
+        var arr2 = Array(5).fill({
+            name: "yyh",
+            sex: "man"
+        })
+        // console.log(arr2)
+    </script>
+    <script>
+        // 清空对象所有属性值
+        var obj = {
+            name: 1,
+            value: 2,
+            sex: "man"
+        };
+        Object.keys(obj).forEach(key => {
+            obj[key] = ""
+        });
+        // 两个不同的对象给相同属性赋值
+        var obj1 = {
+            name: 1,
+            value: 2,
+            sex: "man"
+        }
+        var obj2 = {
+            name: 666
+        }
+        Object.keys(obj2).forEach(key => {
+            obj2[key] = obj1[key]
+        });
+        // console.log(obj2)//{name: 1}
+    </script>
+    <script>
+        Array() // []
+        Array(3) // [, , ,]
+        Array(3, 11, 8) // [3, 11, 8]
+
+        // Array.of
+        Array.of(3, 11, 8) // [3,11,8]
+        Array.of(3) // [3]
+        Array.of(3).length // 1
+
+        // find() 找出第一个符合条件的数组成员,如果没有则返回undefined
+        const findArr=[1, 4, -5, 10]
+        findArr.find((n) => n < 0); //-5
+        findArr.find(function (value, index, arr) {
+            return value > 9;
+        }) // 10
+
+        // findIndex() 找不到返回-1
+        const findIndexArr=[1, 4, -5, 10]
+        var a= findArr.findIndex(function (value, index, arr) {
+            return value > 9;
+        }) // 3
+        // console.log(a) //3
     </script>
 </body>
 
