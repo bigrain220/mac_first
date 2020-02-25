@@ -30,8 +30,10 @@ const lineData={
 
 	}
 }
-
 export  {lineData};
+
+
+// export  {lineData};
 // import {lineData} from "@/assets/lineData";
 // 或者
 // export default lineData;
