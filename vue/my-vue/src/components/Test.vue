@@ -10,6 +10,10 @@
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
      </div> -->
+     <!-- <div class="z-dialog">
+     <z-dialog-sync v-if="dialogVisible.dialog1" :dialogObj="dialogObj" :isShow.sync="dialogVisible.dialog1"></z-dialog-sync>
+     <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
+     </div> -->
     <!-- <date-picker></date-picker> -->
     <!-- <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
@@ -28,6 +32,7 @@ export default {
     vuexTemplate: () => import("./common/vuex"),
     imgUpload: () => import("./common/imgUpload"),
     zDialog: () => import("./common/dialog"),
+    zDialogSync: () => import("./common/dialog.sync"),
     datePicker: () => import("./common/datePicker"),
     lineEcharts: () => import("./common/lineEcharts"),
     filterTable:()=>import("./common/table")
