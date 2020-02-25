@@ -30,22 +30,11 @@ const lineData={
 
 	}
 }
-
 export  {lineData};
+
+
+// export  {lineData};
 // import {lineData} from "@/assets/lineData";
 // 或者
 // export default lineData;
 // import lineData from "@/assets/lineData";
-
-// var bar = function (d,w) {
-//   return  d+'?x-oss-process=image/resize,w_'+w;
-// }
-// export default {
-//   bar:bar
-// };
-
-// export default {
-//   bar: (d,w) => {   
-//     return  d+'?x-oss-process=image/resize,w_'+w;
-//   }
-// };
