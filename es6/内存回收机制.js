@@ -46,9 +46,9 @@ var size = 20 * 1024 * 1024;
 // getme();
 // var arr8 = new Array(size);
 // getme();
-// //第九个会内存溢出报错；
-// // var arr9 = new Array(size);
-// // getme();
+//第九个会内存溢出报错；
+// var arr9 = new Array(size);
+// getme();
 
 // 局部变量
 // var a = [];
@@ -64,21 +64,23 @@ var size = 20 * 1024 * 1024;
 //     getme();
 // }
 
-// 闭包只有在引用时才会内存泄漏
-function a() {
-    var _size = 20 * 1024 * 1024;
-    var _arr = new Array(_size);
-    return _arr;
-}
+//闭包只有在引用时才会内存泄漏
+// function a() {
+//     var _size = 20 * 1024 * 1024;
+//     var _arr = new Array(_size);
+//     return _arr;
+// }
+
 //无论调用多少次都不会内存泄漏
 // a(); a(); a(); a(); a(); a(); a(); a(); a();
 //下面被引用后就会内存泄漏，函数里面都局部变量在外面不要引用（‘=’）
-var e = a();
-var f = a();
-var g = a();
-var h = a();
-var i = a();
-var j = a();
-var k = a();
-var l = a();
-var m = a();
+
+// var e = a();
+// var f = a();
+// var g = a();
+// var h = a();
+// var i = a();
+// var j = a();
+// var k = a();
+// var l = a();
+// var m = a();
