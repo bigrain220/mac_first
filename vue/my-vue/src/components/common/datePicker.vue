@@ -21,7 +21,7 @@ methods方法：
       <el-button type="primary" @click="dateClick(-6)">最近七天</el-button>
       <el-button type="primary" @click="dateClick(-29)">最近三十天</el-button>
     </el-button-group>
-    <el-date-picker v-model="value" format="yyyy-MM-dd" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" @change="dateChange">
+    <el-date-picker v-model="value" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" @change="dateChange">
     </el-date-picker>
   </div>
 </template>
