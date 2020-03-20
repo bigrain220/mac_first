@@ -58,18 +58,29 @@
         Array.of(3).length // 1
 
         // find() 找出第一个符合条件的数组成员,如果没有则返回undefined
-        const findArr=[1, 4, -5, 10]
+        const findArr = [1, 4, -5, 10]
         findArr.find((n) => n < 0); //-5
         findArr.find(function (value, index, arr) {
             return value > 9;
         }) // 10
 
         // findIndex() 找不到返回-1
-        const findIndexArr=[1, 4, -5, 10]
-        var a= findArr.findIndex(function (value, index, arr) {
+        const findIndexArr = [1, 4, -5, 10]
+        var a = findArr.findIndex(function (value, index, arr) {
             return value > 9;
         }) // 3
         // console.log(a) //3
+
+
+        //不是es6的filter方法
+
+        // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+        // 注意： filter() 不会对空数组进行检测。
+        // 注意： filter() 不会改变原始数组。
+        const arr=[1,2,3]
+        arr.filter(x=>x>2) //[3]
+
+
     </script>
 </body>
 
