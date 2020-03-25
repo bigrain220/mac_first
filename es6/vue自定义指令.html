@@ -67,7 +67,7 @@
                     inserted: function (el, binding) {
                         console.log(el, binding)
                         let displayKey = binding.value;
-                        if (displayKey.key) {
+                        if (displayKey) {
                             let hs = that.checkArray(displayKey.key);
                             if (!hs) {
                                 el.parentNode && el.parentNode.removeChild(el);
