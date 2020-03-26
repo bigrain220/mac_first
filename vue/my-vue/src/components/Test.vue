@@ -10,7 +10,7 @@
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
      </div> -->
-     <!-- <div class="z-dialog">
+    <!-- <div class="z-dialog">
      <z-dialog-sync v-if="dialogVisible.dialog1" :dialogObj="dialogObj" :isShow.sync="dialogVisible.dialog1"></z-dialog-sync>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
      </div> -->
@@ -20,12 +20,16 @@
       <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
     </div> -->
     <!-- <filterTable></filterTable> -->
+    <div>
+      <div> 自动聚焦：<input type="text" v-focus> </div>
+      <div>根据自定义指令渲染颜色：<span v-color="'red'">red</span> <span v-color="'blue'">blue</span> <span v-color="'#ccc'">#ccc</span></div>
+    </div>
   </div>
 </template>
 <script>
-import {lineData} from "@/assets/lineData";
+import { lineData } from "@/assets/lineData";
 import utils from "@/utils/utils";
-
+import "@/utils/directives";
 export default {
   components: {
     keywordsTxt: () => import("./common/keywordsTxt"),
@@ -35,7 +39,7 @@ export default {
     zDialogSync: () => import("./common/dialog.sync"),
     datePicker: () => import("./common/datePicker"),
     lineEcharts: () => import("./common/lineEcharts"),
-    filterTable:()=>import("./common/table")
+    filterTable: () => import("./common/table-filters")
   },
   data() {
     return {
@@ -54,9 +58,10 @@ export default {
         nameArr: [],
         x_data: [],
         y_data: [],
-        colorArr: ["#4fa8f9", "#6ec71e", "#EE6363", "#6dc78e","#000"],
+        colorArr: ["#4fa8f9", "#6ec71e", "#EE6363", "#6dc78e", "#000"],
         inter_val: 1,
-        self: {//自定义配置
+        self: {
+          //自定义配置
           title: {
             text: "堆叠区域图"
           }
