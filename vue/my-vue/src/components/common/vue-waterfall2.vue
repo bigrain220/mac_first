@@ -1,4 +1,5 @@
 <template>
+<!-- vue-waterfall-easy更好用 -->
   <div class="container-water-fall">
     <!-- <h1 style="position: fixed;left: 0;top: 100px;font-style: 15px;color:blue;z-index: 1000;">{{loadstatus}}</h1> -->
     <div class="btn-group"> <button @click="loadmore">LoadMore</button></div>
