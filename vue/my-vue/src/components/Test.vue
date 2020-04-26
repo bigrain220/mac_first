@@ -15,15 +15,15 @@
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
      </div> -->
     <!-- <date-picker></date-picker> -->
-    <!-- <div>
+    <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
       <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
-    </div> -->
+    </div>
     <!-- <filterTable></filterTable> -->
-    <div>
+    <!-- <div>
       <div> 自动聚焦：<input type="text" v-focus> </div>
       <div>根据自定义指令渲染颜色：<span v-color="'red'">red</span> <span v-color="'blue'">blue</span> <span v-color="'#ccc'">#ccc</span></div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -55,6 +55,7 @@ export default {
         dialog1: false
       },
       lineEchartsObj: {
+        id:"line-echarts",
         nameArr: [],
         x_data: [],
         y_data: [],

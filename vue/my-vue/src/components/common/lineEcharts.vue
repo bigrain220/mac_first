@@ -20,7 +20,7 @@ methods方法：（把数据处理然后赋值给lineEchartsObj中的每项属�
 
 
 <template>
-  <div id="line-echarts" style="width:100%;height:500px;background:#fff;"></div>
+  <div :id="lineEchartsObj.id" style="width:100%;height:500px;background:#fff;"></div>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     initEcharts() {
-      this.myChart = $echarts.init(document.getElementById("line-echarts"));
+      this.myChart = $echarts.init(document.getElementById(this.lineEchartsObj.id));
       this.myChart ? this.myChart.clear() : "";
       var option = {
         tooltip: {
@@ -189,9 +189,9 @@ export default {
     this.setEcharts();
     // console.log(this.x_data, this.y_data, this.nameArr, this.colorArr);
     var that = this;
-    window.onresize = function() {
+     window.addEventListener("resize", function() {
       that.myChart ? that.myChart.resize() : "";
-    };
+    });
   },
   computed: {
     x_data: function() {
