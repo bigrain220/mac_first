@@ -55,6 +55,7 @@ export default {
         start = nowTime - 60 * 60 * 1000 * 24 * 29;
         this.value = [new Date(start), new Date(nowTime)];
       }
+      console.log(this.value[0],new Date().getTime(this.value[0]))
     }
   }
 };

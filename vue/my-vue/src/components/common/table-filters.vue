@@ -45,6 +45,7 @@ export default {
       return finalResult;
     },
     filterHandler(value, row, column) {
+      console.log(column)
       const property = column["property"];
       return row[property] === value || row[property].value === value;
     }
@@ -63,7 +64,7 @@ export default {
         value: item[1]
       });
     });
-    console.log("filterList", filterList);
+    // console.log("filterList", filterList);
     //下面这句话只是执行uniqArrObject函数进行数组去重
     filterList = this.uniqArrObject(filterList);
   }

@@ -5,25 +5,33 @@
     <!-- <div class="img-upload">
      <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
      <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
-     </div> -->
+    </div>-->
     <!-- <div class="z-dialog">
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-     </div> -->
+    </div>-->
     <!-- <div class="z-dialog">
      <z-dialog-sync v-if="dialogVisible.dialog1" :dialogObj="dialogObj" :isShow.sync="dialogVisible.dialog1"></z-dialog-sync>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-     </div> -->
+    </div>-->
     <!-- <date-picker></date-picker> -->
-    <div>
+    <!-- <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
       <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
-    </div>
+    </div>-->
     <!-- <filterTable></filterTable> -->
     <!-- <div>
       <div> 自动聚焦：<input type="text" v-focus> </div>
       <div>根据自定义指令渲染颜色：<span v-color="'red'">red</span> <span v-color="'blue'">blue</span> <span v-color="'#ccc'">#ccc</span></div>
-    </div> -->
+    </div>-->
+    <div>
+      <el-upload-base
+        :uploadProps="uploadProps"
+        :uploadParams="uploadParams"
+        @mapEvent="mapEvent"
+      ></el-upload-base>
+      <el-button size="medium" @click="confidenceClick" type="primary">确定</el-button>
+    </div>
   </div>
 </template>
 <script>
@@ -39,7 +47,8 @@ export default {
     zDialogSync: () => import("./common/dialog.sync"),
     datePicker: () => import("./common/datePicker"),
     lineEcharts: () => import("./common/lineEcharts"),
-    filterTable: () => import("./common/table-filters")
+    filterTable: () => import("./common/table-filters"),
+    elUploadBase: () => import("./common/el-upload")
   },
   data() {
     return {
@@ -55,7 +64,7 @@ export default {
         dialog1: false
       },
       lineEchartsObj: {
-        id:"line-echarts",
+        id: "line-echarts",
         nameArr: [],
         x_data: [],
         y_data: [],
@@ -67,6 +76,18 @@ export default {
             text: "堆叠区域图"
           }
         }
+      },
+      uploadProps: {
+        uploadSure: false,
+        acceptType: [".png", ".jpg", ".gif", ".pdf"],
+        url: "/api/test",
+        size:1,
+        limit:2
+      },
+      uploadParams: {
+        params1: "",
+        params2: "",
+        params3: ""
       }
     };
   },
@@ -97,6 +118,9 @@ export default {
           this.lineEchartsObj.y_data[index].push(data[index]);
         });
       });
+    },
+    confidenceClick() {
+      this.uploadProps.uploadSure = !this.uploadProps.uploadSure;
     }
   },
   created() {
