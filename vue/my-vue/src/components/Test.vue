@@ -9,11 +9,11 @@
     <!-- <div class="z-dialog">
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-    </div>-->
+    </div> -->
     <!-- <div class="z-dialog">
      <z-dialog-sync v-if="dialogVisible.dialog1" :dialogObj="dialogObj" :isShow.sync="dialogVisible.dialog1"></z-dialog-sync>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-    </div>-->
+    </div> -->
     <!-- <date-picker></date-picker> -->
     <!-- <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
@@ -37,7 +37,8 @@
 <script>
 import { lineData } from "@/assets/lineData";
 import utils from "@/utils/utils";
-import "@/utils/directives";
+import "@/directives";
+
 export default {
   components: {
     keywordsTxt: () => import("./common/keywordsTxt"),
@@ -48,7 +49,7 @@ export default {
     datePicker: () => import("./common/datePicker"),
     lineEcharts: () => import("./common/lineEcharts"),
     filterTable: () => import("./common/table-filters"),
-    elUploadBase: () => import("./common/el-upload")
+    elUploadBase: () => import("./common/el-upload"),
   },
   data() {
     return {
@@ -91,7 +92,6 @@ export default {
       }
     };
   },
-
   methods: {
     getTxt(params) {
       console.log(params, "accept");
