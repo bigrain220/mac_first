@@ -3,8 +3,8 @@
     <!-- <keywordsTxt @getTxt="getTxt"></keywordsTxt> -->
     <!-- <vuexTemplate></vuexTemplate> -->
     <!-- <div class="img-upload">
-     <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
-     <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
+     <img-upload :uploadProps=uploadProps1 @mapEvent="mapEvent"></img-upload>
+     <el-button  @click="uploadProps1.uploadSure=!uploadProps1.uploadSure">上传事件</el-button>
     </div>-->
     <!-- <div class="z-dialog">
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
@@ -26,7 +26,7 @@
     </div>
     <!-- <div>
       <el-upload-base
-        :uploadProps="uploadProps"
+        :uploadProps="uploadProps2"
         :uploadParams="uploadParams"
         @mapEvent="mapEvent"
       ></el-upload-base>
@@ -52,7 +52,7 @@ export default {
   },
   data() {
     return {
-      uploadProps: {
+      uploadProps1: {
         uploadSure: false,
         width: 100,
         height: 100
@@ -77,7 +77,7 @@ export default {
           }
         }
       },
-      uploadProps: {
+      uploadProps2: {
         uploadSure: false,
         acceptType: [".png", ".jpg", ".gif", ".pdf"],
         url: "/api/test",
