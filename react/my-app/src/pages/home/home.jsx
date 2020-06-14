@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table, Button } from 'antd';
 import EditDialog from '../edit/edit'
 
+// return Array of cloumns in table
 function getColumns() {
     const name = ['车型code', '车型名称', '外观颜色code', '外观颜色', '内饰颜色code', '内饰颜色', '首次上牌时间', '上牌城市',
         '车牌号', '拍照类型', '车辆用途', '过户次数', '发动机号', '钥匙数量', '车辆来源', '是否新车', '在售状态', '车辆审核状态',
@@ -12,12 +13,14 @@ function getColumns() {
         arr.push({
             title: item,
             key: index + "",
-            dataIndex: value[index]
+            dataIndex: value[index],
+            align:'center'
         })
     ))
     return arr;
 }
 
+// the dataSource of the table
 const data = [
     {
         id: '2dfeff3f',
@@ -67,6 +70,7 @@ class Home extends Component {
                 dataIndex: 'id',
                 key: 'id',
                 fixed: 'left',
+                align:'center'
             },
             {
                 title: 'vin码',
@@ -74,12 +78,14 @@ class Home extends Component {
                 dataIndex: 'vin',
                 key: 'vin',
                 fixed: 'left',
+                align:'center'
             },
             ...getColumns(),
             {
                 title: '操作',
                 key: 'operation',
                 fixed: 'right',
+                align:'center',
                 width: 100,
                 render: (text, record) => <div>
                     <Button type="link" onClick={() => this.editClick(text)}>编辑</Button>
@@ -104,10 +110,9 @@ class Home extends Component {
             rowData: text,
             showEdit: true
         });
-        console.log(this.state.showEdit)
     };
 
-
+//control EditDialog hide or visible
     hideDialog = () => {
         this.setState({
             showEdit: false
@@ -118,7 +123,8 @@ class Home extends Component {
     render() {
         return (
             <div id="Home" className="page">
-                <Table columns={this.columns} dataSource={data} scroll={{ x: 3000 }} rowKey="id"
+                <Table columns={this.columns} dataSource={data} scroll={{ x: 3000 }} 
+                    rowKey="id" size="default"
                     pagination={{  // 分页
                         showSizeChanger: true,
                         showQuickJumper: true,

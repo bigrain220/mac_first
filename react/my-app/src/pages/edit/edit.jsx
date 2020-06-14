@@ -1,11 +1,13 @@
 import './edit.css';
 import React, { Component } from 'react'
 import { Modal, Input, DatePicker, Select, Button } from 'antd';
+import { Row, Col } from 'antd';
 import moment from 'moment';
 
 const { Option } = Select;
 const { confirm } = Modal;
 
+//edit-dialog's each label of item
 const labels = [
     {
         label: "车辆id",
@@ -82,6 +84,7 @@ const labels = [
         type: 'select'
     }
 ]
+//all the options of the select
 const selectOptions = [
     {
         name: 'licensingType',
@@ -112,7 +115,7 @@ const selectOptions = [
         ]
     }
 ]
-
+//functions to get selectoptions by name
 function getOptions(value) {
     let res = selectOptions.find(x => x.name === value);
     return res.data ? res.data : [];
@@ -150,7 +153,7 @@ class EditDialog extends Component {
     };
 
     okEvent = () => {
-        //最终修改后的数据
+        //final results,which is going to submit
         console.log(this.state.formData, 'sure')
     }
 
@@ -185,7 +188,7 @@ class EditDialog extends Component {
                 <Modal
                     title="修改车辆基础信息"
                     visible={visible}
-                    width="80vw"
+                    width="70vw"
                     wrapClassName="edit-modal"
                     onCancel={this.handleCancel}
                     // destroyOnClose
@@ -199,17 +202,21 @@ class EditDialog extends Component {
                     ]}
                 >
                     <div className="edit-form">
+                    <Row gutter={48}>
                         {
                             labels.map((item, index) => {
                                 if (item.type === 'input') {
                                     return (
+                                        <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
                                         <div className="item" key={index}>
                                             <div className="label">{item.label}：</div><Input disabled={item.disabled} placeholder={item.placeholder}
                                                 defaultValue={this.props.rowData[item.prop]} onChange={this.input_change.bind(this, item.prop)} />
                                         </div>
+                                        </Col>
                                     )
                                 } else if (item.type === 'select') {
                                     return (
+                                        <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
                                         <div className="item" key={index}>
                                             <div className="label">{item.label}：</div>
                                             <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }}
@@ -223,20 +230,23 @@ class EditDialog extends Component {
                                                 }
                                             </Select>
                                         </div>
+                                        </Col>
                                     )
                                 } else if (item.type === 'date') {
                                     return (
+                                        <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
                                         <div className="item" key={index}>
                                             <div className="label">{item.label}：</div><DatePicker onChange={this.date_change.bind(this, item.prop)}
                                                 defaultValue={moment(this.props.rowData[item.prop], 'YYYY-MM-DD')} />
                                         </div>
+                                        </Col>
                                     )
                                 } else {
                                     return ""
                                 }
                             })
                         }
-
+                        </Row>
                     </div>
 
                 </Modal>
