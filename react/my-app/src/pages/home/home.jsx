@@ -11,7 +11,7 @@ function getColumns() {
     name.map((item, index) => (
         arr.push({
             title: item,
-            key: index+"",
+            key: index + "",
             dataIndex: value[index]
         })
     ))
@@ -20,32 +20,32 @@ function getColumns() {
 
 const data = [
     {
-        id:'2dfeff3f',
-        vin:'dfdfdfdf',
-        carNumber:'1ssdsdsd',
-        licensingTime:'2020-01-01',
-        licensingCity:"New York Park",
-        licensingType:"公户",
-        carUsing:"营运",
-        transferNumber:"efdfdsf",
-        keysNumber:"3rrfer343",
-        engineNumber:"ererererere",
-        outColor:"黑色",
-        insideColor:"黑色"
+        id: '2dfeff3f',
+        vin: 'dfdfdfdf',
+        carNumber: '1ssdsdsd',
+        licensingTime: '2020-01-01',
+        licensingCity: "New York Park",
+        licensingType: "公户",
+        carUsing: "营运",
+        transferNumber: "efdfdsf",
+        keysNumber: "3rrfer343",
+        engineNumber: "ererererere",
+        outColor: "黑色",
+        insideColor: "黑色"
     },
     {
-        id:'34fdf34',
-        vin:'565656',
-        carNumber:'1ssdsdsd',
-        licensingTime:'2020-02-02',
-        licensingCity:"New York Park",
-        licensingType:"私户",
-        carUsing:"私运",
-        transferNumber:"efdfdsf",
-        keysNumber:"3rrfer343",
-        engineNumber:"ererererere",
-        outColor:"白色",
-        insideColor:"白色"
+        id: '34fdf34',
+        vin: '565656',
+        carNumber: '1ssdsdsd',
+        licensingTime: '2020-02-02',
+        licensingCity: "New York Park",
+        licensingType: "私户",
+        carUsing: "私运",
+        transferNumber: "efdfdsf",
+        keysNumber: "3rrfer343",
+        engineNumber: "ererererere",
+        outColor: "白色",
+        insideColor: "白色"
     }
 ]
 
@@ -106,10 +106,19 @@ class Home extends Component {
         });
         console.log(this.state.showEdit)
     };
+
+
+    hideDialog = () => {
+        this.setState({
+            showEdit: false
+        });
+    };
+
+
     render() {
         return (
             <div id="Home" className="page">
-                <Table columns={this.columns} dataSource={data} scroll={{ x: 3000 }}
+                <Table columns={this.columns} dataSource={data} scroll={{ x: 3000 }} rowKey="id"
                     pagination={{  // 分页
                         showSizeChanger: true,
                         showQuickJumper: true,
@@ -121,7 +130,7 @@ class Home extends Component {
                         showTotal: (total) => { return '共 ' + total + ' 条记录 第 ' + this.state.current + ' / ' + total / this.state.pageSize + '页' }
                     }}
                 />
-                {this.state.showEdit && <EditDialog rowData={this.state.rowData} isShow={this.state.showEdit} ></EditDialog>}
+                {this.state.showEdit && <EditDialog rowData={this.state.rowData} isShow={this.state.showEdit} hideDialog={() => this.hideDialog()}></EditDialog>}
             </div>
         )
 

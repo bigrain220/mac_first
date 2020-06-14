@@ -145,6 +145,7 @@ class EditDialog extends Component {
     }
 
     handleCancel = () => {
+        this.props.hideDialog()
         this.setState({ visible: false });
     };
 
@@ -202,21 +203,21 @@ class EditDialog extends Component {
                             labels.map((item, index) => {
                                 if (item.type === 'input') {
                                     return (
-                                        <div className="item">
+                                        <div className="item" key={index}>
                                             <div className="label">{item.label}：</div><Input disabled={item.disabled} placeholder={item.placeholder}
                                                 defaultValue={this.props.rowData[item.prop]} onChange={this.input_change.bind(this, item.prop)} />
                                         </div>
                                     )
                                 } else if (item.type === 'select') {
                                     return (
-                                        <div className="item">
+                                        <div className="item" key={index}>
                                             <div className="label">{item.label}：</div>
                                             <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }}
                                                 placeholder="请选择" onChange={this.select_change.bind(this, item.prop)}>
                                                 {
                                                     getOptions(item.prop).map((item1, i) => {
                                                         return (
-                                                            <Option value={item1.value}>{item1.text}</Option>
+                                                            <Option value={item1.value} key={i}>{item1.text}</Option>
                                                         )
                                                     })
                                                 }
@@ -225,7 +226,7 @@ class EditDialog extends Component {
                                     )
                                 } else if (item.type === 'date') {
                                     return (
-                                        <div className="item">
+                                        <div className="item" key={index}>
                                             <div className="label">{item.label}：</div><DatePicker onChange={this.date_change.bind(this, item.prop)}
                                                 defaultValue={moment(this.props.rowData[item.prop], 'YYYY-MM-DD')} />
                                         </div>
@@ -243,7 +244,7 @@ class EditDialog extends Component {
         )
     }
     componentDidMount() {
-        console.log(this.props.rowData);
+        // console.log(this.props.rowData);
         this.setState({
             visible: this.props.isShow,
             formData: this.props.rowData
