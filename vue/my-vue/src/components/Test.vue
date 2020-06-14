@@ -3,17 +3,17 @@
     <!-- <keywordsTxt @getTxt="getTxt"></keywordsTxt> -->
     <!-- <vuexTemplate></vuexTemplate> -->
     <!-- <div class="img-upload">
-     <img-upload :uploadProps=uploadProps @mapEvent="mapEvent"></img-upload>
-     <el-button  @click="uploadProps.uploadSure=!uploadProps.uploadSure">上传事件</el-button>
+     <img-upload :uploadProps=uploadProps1 @mapEvent="mapEvent"></img-upload>
+     <el-button  @click="uploadProps1.uploadSure=!uploadProps1.uploadSure">上传事件</el-button>
     </div>-->
     <!-- <div class="z-dialog">
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-    </div>-->
+    </div> -->
     <!-- <div class="z-dialog">
      <z-dialog-sync v-if="dialogVisible.dialog1" :dialogObj="dialogObj" :isShow.sync="dialogVisible.dialog1"></z-dialog-sync>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-    </div>-->
+    </div> -->
     <!-- <date-picker></date-picker> -->
     <!-- <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
@@ -26,7 +26,7 @@
     </div>
     <!-- <div>
       <el-upload-base
-        :uploadProps="uploadProps"
+        :uploadProps="uploadProps2"
         :uploadParams="uploadParams"
         @mapEvent="mapEvent"
       ></el-upload-base>
@@ -37,7 +37,8 @@
 <script>
 import { lineData } from "@/assets/lineData";
 import utils from "@/utils/utils";
-import "@/utils/directives";
+import "@/directives";
+
 export default {
   components: {
     keywordsTxt: () => import("./common/keywordsTxt"),
@@ -48,11 +49,11 @@ export default {
     datePicker: () => import("./common/datePicker"),
     lineEcharts: () => import("./common/lineEcharts"),
     filterTable: () => import("./common/table-filters"),
-    elUploadBase: () => import("./common/el-upload")
+    elUploadBase: () => import("./common/el-upload"),
   },
   data() {
     return {
-      uploadProps: {
+      uploadProps1: {
         uploadSure: false,
         width: 100,
         height: 100
@@ -77,7 +78,7 @@ export default {
           }
         }
       },
-      uploadProps: {
+      uploadProps2: {
         uploadSure: false,
         acceptType: [".png", ".jpg", ".gif", ".pdf"],
         url: "/api/test",
@@ -91,7 +92,6 @@ export default {
       }
     };
   },
-
   methods: {
     getTxt(params) {
       console.log(params, "accept");

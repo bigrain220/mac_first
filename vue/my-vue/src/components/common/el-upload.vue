@@ -1,5 +1,38 @@
 
-
+<!-- 用法： -->
+<!-- 
+template结构：
+    <div>
+      <el-upload-base
+        :uploadProps="uploadProps"
+        :uploadParams="uploadParams"
+        @mapEvent="mapEvent"
+      ></el-upload-base>
+      <el-button size="medium" @click="confidenceClick" type="primary">确定</el-button>
+    </div> 
+data 数据：
+    //上传配置
+    uploadProps: {
+      uploadSure: false,
+      acceptType: [".png", ".jpg", ".gif", ".pdf"],
+      url: "/api/test",
+      size:1,
+      limit:2
+    },
+    //上传参数
+    uploadParams: {
+      params1: "",
+      params2: "",
+      params3: ""
+    }
+methods方法：
+  mapEvent(data){
+    console.log(data);
+  },
+  confidenceClick() {
+      this.uploadProps.uploadSure = !this.uploadProps.uploadSure;//触发上传事件
+  }
+-->
 <template>
   <div>
     <el-upload
@@ -17,7 +50,8 @@
       <el-button slot="trigger" size="mini" type="primary">选取文件</el-button>
       <div slot="tip" class="el-upload__tip">
         上传的图片文件单张大小不能超过{{uploadProps.size}}M，文件同时上传数量不能超过{{uploadProps.limit}}。
-        <br />文件支持格式为{{acceptType.toString()}}
+        <br />
+        文件支持格式为{{acceptType.toString()}}
       </div>
     </el-upload>
   </div>
@@ -51,7 +85,9 @@ export default {
         fileList.pop();
         return false;
       } else if (!isSize) {
-        this.$message.error('单次上传文件大小不能超过'+this.uploadProps.size+'M');
+        this.$message.error(
+          "单次上传文件大小不能超过" + this.uploadProps.size + "M"
+        );
         fileList.pop();
         return false;
       } else {
