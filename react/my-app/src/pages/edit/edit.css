@@ -1,0 +1,17 @@
+.edit-form{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.edit-form .item{
+ display: flex;
+ width: 30%;
+ margin: 10px 0;
+}
+.edit-form .item .label{
+    width: 100px;
+}
+.edit-modal .ant-modal-footer{
+    text-align: center;
+    padding: 20px 0;
+}
