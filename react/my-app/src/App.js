@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, NavLink as Link, Switch } from 'react-router-dom'
+//history路由
+// import { BrowserRouter as Router, Route, NavLink as Link, Switch } from 'react-router-dom'
+//hash路由
+import { HashRouter  as Router, Route, NavLink as Link, Switch } from 'react-router-dom'
 import Home from './pages/home/home'
 import zhCN from 'antd/es/locale/zh_CN';
 import { ConfigProvider } from 'antd';
