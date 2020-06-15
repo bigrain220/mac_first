@@ -3,11 +3,11 @@ var http = require('http');
 
 var userData="";
 // 读文件
-fs.readFile('./file/file1.txt','utf-8', function (error, data) {
+fs.readFile('../file/file1.txt','utf-8', function (error, data) {
     // console.log(data.toString())
     userData=data.toString();
 })
-fs.writeFile('./file/file2.txt','i am ironman',function(error){
+fs.writeFile('../file/file2.txt','i am ironman',function(error){
     // console.log(error)
 })
 
