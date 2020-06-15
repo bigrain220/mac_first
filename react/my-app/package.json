@@ -1,11 +1,12 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
-    "antd": "^3.24.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "antd": "^3.26.17",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.2.0"
   },
