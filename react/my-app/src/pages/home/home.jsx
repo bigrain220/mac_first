@@ -100,7 +100,9 @@ class Home extends Component {
         });
     };
     changeSize = (current, size) => {
+        console.log(current)
         this.setState({
+            current: current,
             pageSize: size,
         });
     };
