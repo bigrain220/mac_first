@@ -3,10 +3,11 @@ import React, { Component } from 'react'
 import { Modal, Input, DatePicker, Select, Button } from 'antd';
 import { Row, Col } from 'antd';
 import moment from 'moment';
+import testData from "../test/data"
 
 const { Option } = Select;
 const { confirm } = Modal;
-
+console.log('testData',testData)
 //edit-dialog's each label of item
 const labels = [
     {
@@ -39,19 +40,22 @@ const labels = [
         label: "上牌城市",
         placeholder: '请选择上牌城市',
         prop: 'licensingCity',
-        type: 'input'
+        type: 'select',
+        serach:true
     },
     {
         label: "牌照类型",
         placeholder: '请选择牌照类型',
         prop: 'licensingType',
-        type: 'select'
+        type: 'select',
+        serach:false
     },
     {
         label: "车辆用途",
         placeholder: '请选择车辆用途',
         prop: 'carUsing',
-        type: 'select'
+        type: 'select',
+        serach:false
     },
     {
         label: "过户次数",
@@ -75,13 +79,15 @@ const labels = [
         label: "外观颜色",
         placeholder: '请选择外观颜色',
         prop: 'outColor',
-        type: 'select'
+        type: 'select',
+        serach:false
     },
     {
         label: "内饰颜色",
         placeholder: '请选择内饰颜色',
         prop: 'insideColor',
-        type: 'select'
+        type: 'select',
+        serach:false
     }
 ]
 //all the options of the select
@@ -113,8 +119,20 @@ const selectOptions = [
             { value: '黑色', text: '黑色' },
             { value: '白色', text: '白色' }
         ]
+    },
+    {
+        name: 'licensingCity',
+        data: [
+            { value: '00002', text: '北京市' },
+            { value: '00003', text: '天津市' },
+            { value: '00004', text: '深圳市' }
+        ]
     }
 ]
+
+
+
+
 //functions to get selectoptions by name
 function getOptions(value) {
     let res = selectOptions.find(x => x.name === value);
@@ -154,7 +172,8 @@ class EditDialog extends Component {
 
     okEvent = () => {
         //final results,which is going to submit
-        console.log(this.state.formData, 'sure')
+        console.log(this.state.formData, 'sure');
+        this.setState({ visible: false });
     }
 
     updateData = (prop, value) => {
@@ -180,7 +199,6 @@ class EditDialog extends Component {
         this.updateData(prop, dateString)
     }
 
-
     render() {
         const { visible, loading } = this.state
         return (
@@ -202,50 +220,50 @@ class EditDialog extends Component {
                     ]}
                 >
                     <div className="edit-form">
-                    <Row gutter={48}>
-                        {
-                            labels.map((item, index) => {
-                                if (item.type === 'input') {
-                                    return (
-                                        <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
-                                        <div className="item" key={index}>
-                                            <div className="label">{item.label}：</div><Input disabled={item.disabled} placeholder={item.placeholder}
-                                                defaultValue={this.props.rowData[item.prop]} onChange={this.input_change.bind(this, item.prop)} />
-                                        </div>
-                                        </Col>
-                                    )
-                                } else if (item.type === 'select') {
-                                    return (
-                                        <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
-                                        <div className="item" key={index}>
-                                            <div className="label">{item.label}：</div>
-                                            <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }}
-                                                placeholder="请选择" onChange={this.select_change.bind(this, item.prop)}>
-                                                {
-                                                    getOptions(item.prop).map((item1, i) => {
-                                                        return (
-                                                            <Option value={item1.value} key={i}>{item1.text}</Option>
-                                                        )
-                                                    })
-                                                }
-                                            </Select>
-                                        </div>
-                                        </Col>
-                                    )
-                                } else if (item.type === 'date') {
-                                    return (
-                                        <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
-                                        <div className="item" key={index}>
-                                            <div className="label">{item.label}：</div><DatePicker onChange={this.date_change.bind(this, item.prop)}
-                                                defaultValue={moment(this.props.rowData[item.prop], 'YYYY-MM-DD')} />
-                                        </div>
-                                        </Col>
-                                    )
-                                } else {
-                                    return ""
-                                }
-                            })
-                        }
+                        <Row gutter={48}>
+                            {
+                                labels.map((item, index) => {
+                                    if (item.type === 'input') {
+                                        return (
+                                            <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
+                                                <div className="item" key={index}>
+                                                    <div className="label">{item.label}：</div><Input disabled={item.disabled} placeholder={item.placeholder}
+                                                        defaultValue={this.props.rowData[item.prop]} onChange={this.input_change.bind(this, item.prop)} />
+                                                </div>
+                                            </Col>
+                                        )
+                                    } else if (item.type === 'select') {
+                                        return (
+                                            <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
+                                                <div className="item" key={index}>
+                                                    <div className="label">{item.label}：</div>
+                                                    <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }}  showSearch={item.serach} optionFilterProp="children"
+                                                        placeholder="请选择" onChange={this.select_change.bind(this, item.prop)}>
+                                                        {
+                                                            getOptions(item.prop).map((item1, i) => {
+                                                                return (
+                                                                    <Option value={item1.value} key={i}>{item1.text}</Option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </Select>
+                                                </div>
+                                            </Col>
+                                        )
+                                    } else if (item.type === 'date') {
+                                        return (
+                                            <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
+                                                <div className="item" key={index}>
+                                                    <div className="label">{item.label}：</div><DatePicker onChange={this.date_change.bind(this, item.prop)}
+                                                        defaultValue={moment(this.props.rowData[item.prop], 'YYYY-MM-DD')} />
+                                                </div>
+                                            </Col>
+                                        )
+                                    } else {
+                                        return ""
+                                    }
+                                })
+                            }
                         </Row>
                     </div>
 

@@ -45,19 +45,23 @@ const labels = [
     label: "上牌城市",
     placeholder: '请选择上牌城市',
     prop: 'registerCityName',
-    type: 'input'
+    type: 'select',
+    selectName:"cityVOList",
+    serach:true
   },
   // {
   //   label: "牌照类型",
   //   placeholder: '请选择牌照类型',
   //   prop: 'ownership',
-  //   type: 'select'
+  //   type: 'select',
+  //   serach:false
   // },
   // {
   //   label: "车辆用途",
   //   placeholder: '请选择车辆用途',
   //   prop: 'useType',
-  //   type: 'select'
+  //   type: 'select',
+  //   serach:false
   // },
   {
     label: "过户次数",
@@ -82,14 +86,16 @@ const labels = [
     placeholder: '请选择外观颜色',
     prop: 'color',
     type: 'select',
-    selectName:"colorMap"
+    selectName:"colorMap",
+    serach:false
   },
   {
     label: "内饰颜色",
     placeholder: '请选择内饰颜色',
     prop: 'innerColor',
     type: 'select',
-    selectName:"innerColorMap"
+    selectName:"innerColorMap",
+    serach:false
   }
 ]
 
@@ -135,6 +141,7 @@ class CarDataManageEditor extends Component {
     console.log(this.state.formData, 'sure');
     searchAPI.updateCarInfo(this.state.formData);
     //searchAPI.search("TEST2006081629424");
+    //this.state.visible = false;
   }
 
   updateData = (prop, value) => {
@@ -161,33 +168,51 @@ class CarDataManageEditor extends Component {
   }
 
   getSelectOtions=()=>{
-    const selectArr=['colorMap','innerColorMap'];//这里填你需要用到的selectName，selectName和你接口的键值一样
+    const selectArr=['colorMap','innerColorMap','cityVOList'];//这里填你需要用到的selectName，selectName和你接口的键值一样
     const options=[];
     selectArr.forEach((item,index)=>{
-        let obj={
-            name:item,
-            data:this.props.rowData[item]
-        };
-        options.push(obj)
+      let obj={
+        name:item,
+        data:this.props.rowData[item]
+      };
+      options.push(obj)
     })
     return options
   }
-  
+
   getOptions=(value)=>{
-    const options=this.getSelectOtions();
+    const options= this.getSelectOtions();
     let res = options.find(x => x.name === value);
     let results=[];
     if(res.data){
-        Object.keys(res.data).forEach(item=>{
+      if(Object.prototype.toString.call(res.data)=='[object Object]'){
+          Object.keys(res.data).forEach(item=>{
             results.push(
-                {
-                    value:res.data[item],
-                    text:item
-                }
+              {
+                value:res.data[item],
+                text:item,
+              }
             )
-        })
+          })
+      }else if(Object.prototype.toString.call(res.data)=='[object Array]'){
+        //如果返回值是数组,把需要的参数传入函数
+        results = this.optionsByArr(res.data,{value:'soucheCode',text:"name"})
+      }
     }
     return results;
+  }
+
+  optionsByArr(data,params){
+    let arr = [];
+    data.forEach(item=>{
+        arr.push(
+          {
+            value:item[params.value],
+            text:item[params.text]
+          }
+        )
+    });
+    return arr;
   }
 
   render() {
@@ -229,7 +254,7 @@ class CarDataManageEditor extends Component {
                       <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
                         <div className="item" key={index}>
                           <div className="label">{item.label}：</div>
-                          <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }}
+                          <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }} showSearch={item.serach} optionFilterProp="children"
                                   placeholder="请选择" onChange={this.select_change.bind(this, item.prop)}>
                             {
                               this.getOptions(item.selectName).map((item1, i) => {
