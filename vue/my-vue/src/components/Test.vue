@@ -9,11 +9,11 @@
     <!-- <div class="z-dialog">
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-    </div> -->
+    </div>-->
     <!-- <div class="z-dialog">
      <z-dialog-sync v-if="dialogVisible.dialog1" :dialogObj="dialogObj" :isShow.sync="dialogVisible.dialog1"></z-dialog-sync>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
-    </div> -->
+    </div>-->
     <!-- <date-picker></date-picker> -->
     <!-- <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
@@ -21,8 +21,16 @@
     </div>-->
     <!-- <filterTable></filterTable> -->
     <div>
-      <div> 自动聚焦：<input type="text" v-focus> </div>
-      <div>根据自定义指令渲染颜色：<span v-color="'red'">red</span> <span v-color="'blue'">blue</span> <span v-color="'#ccc'">#ccc</span></div>
+      <div>
+        自动聚焦：
+        <input type="text" v-focus />
+      </div>
+      <div>
+        根据自定义指令渲染颜色：
+        <span v-color="'red'">red</span>
+        <span v-color="'blue'">blue</span>
+        <span v-color="'#ccc'">#ccc</span>
+      </div>
     </div>
     <!-- <div>
       <el-upload-base
@@ -31,7 +39,7 @@
         @mapEvent="mapEvent"
       ></el-upload-base>
       <el-button size="medium" @click="confidenceClick" type="primary">确定</el-button>
-    </div> -->
+    </div>-->
   </div>
 </template>
 <script>
@@ -49,7 +57,7 @@ export default {
     datePicker: () => import("./common/datePicker"),
     lineEcharts: () => import("./common/lineEcharts"),
     filterTable: () => import("./common/table-filters"),
-    elUploadBase: () => import("./common/el-upload"),
+    elUploadBase: () => import("./common/el-upload")
   },
   data() {
     return {
@@ -82,8 +90,8 @@ export default {
         uploadSure: false,
         acceptType: [".png", ".jpg", ".gif", ".pdf"],
         url: "/api/test",
-        size:1,
-        limit:2
+        size: 1,
+        limit: 2
       },
       uploadParams: {
         params1: "",
@@ -152,7 +160,16 @@ export default {
         window.onbeforeunload = null;
       }
     };
-  }
+  },
+  //局部自定义指令
+  // directives: {
+  //   focus: {
+  //     // 指令的定义
+  //     inserted: function(el) {
+  //       el.focus();
+  //     }
+  //   }
+  // }
 };
 </script>
 

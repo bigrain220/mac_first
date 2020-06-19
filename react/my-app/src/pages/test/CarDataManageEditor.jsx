@@ -174,7 +174,7 @@ class CarDataManageEditor extends Component {
   }
   
   getOptions=(value)=>{
-    const options=getSelectOtions();
+    const options=this.getSelectOtions();
     let res = options.find(x => x.name === value);
     let results=[];
     if(res.data){
