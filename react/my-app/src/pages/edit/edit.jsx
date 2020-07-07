@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import { Modal, Input, DatePicker, Select, Button } from 'antd';
 import { Row, Col } from 'antd';
 import moment from 'moment';
-import testData from "../test/data"
+
 
 const { Option } = Select;
 const { confirm } = Modal;
-console.log('testData',testData)
+
 //edit-dialog's each label of item
 const labels = [
     {
@@ -41,21 +41,21 @@ const labels = [
         placeholder: '请选择上牌城市',
         prop: 'licensingCity',
         type: 'select',
-        serach:true
+        serach: true
     },
     {
         label: "牌照类型",
         placeholder: '请选择牌照类型',
         prop: 'licensingType',
         type: 'select',
-        serach:false
+        serach: false
     },
     {
         label: "车辆用途",
         placeholder: '请选择车辆用途',
         prop: 'carUsing',
         type: 'select',
-        serach:false
+        serach: false
     },
     {
         label: "过户次数",
@@ -80,14 +80,14 @@ const labels = [
         placeholder: '请选择外观颜色',
         prop: 'outColor',
         type: 'select',
-        serach:false
+        serach: false
     },
     {
         label: "内饰颜色",
         placeholder: '请选择内饰颜色',
         prop: 'insideColor',
         type: 'select',
-        serach:false
+        serach: false
     }
 ]
 //all the options of the select
@@ -165,6 +165,12 @@ class EditDialog extends Component {
         });
     }
 
+    resetFrom = () => {
+        this.setState({
+            formData: this.props.rowData
+        });
+    };
+
     handleCancel = () => {
         this.props.hideDialog()
         this.setState({ visible: false });
@@ -173,6 +179,7 @@ class EditDialog extends Component {
     okEvent = () => {
         //final results,which is going to submit
         console.log(this.state.formData, 'sure');
+        console.log(this.state.visible, 'visible')
         this.setState({ visible: false });
     }
 
@@ -214,6 +221,9 @@ class EditDialog extends Component {
                         <Button key="submit" type="primary" loading={loading} onClick={this.showConfirm}>
                             提交
                       </Button>,
+                        <Button key="rest" type="dashed" loading={loading} onClick={this.resetFrom}>
+                            重置
+                      </Button>,
                         <Button key="back" onClick={this.handleCancel} >
                             取消
                         </Button>,
@@ -237,7 +247,7 @@ class EditDialog extends Component {
                                             <Col xs={24} sm={24} md={12} lg={12} xl={12} key={index}>
                                                 <div className="item" key={index}>
                                                     <div className="label">{item.label}：</div>
-                                                    <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }}  showSearch={item.serach} optionFilterProp="children"
+                                                    <Select defaultValue={this.props.rowData[item.prop]} style={{ width: 220 }} showSearch={item.serach} optionFilterProp="children"
                                                         placeholder="请选择" onChange={this.select_change.bind(this, item.prop)}>
                                                         {
                                                             getOptions(item.prop).map((item1, i) => {
