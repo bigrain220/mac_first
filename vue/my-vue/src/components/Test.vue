@@ -5,7 +5,7 @@
     <!-- <div class="img-upload">
      <img-upload :uploadProps=uploadProps1 @mapEvent="mapEvent"></img-upload>
      <el-button  @click="uploadProps1.uploadSure=!uploadProps1.uploadSure">上传事件</el-button>
-    </div>-->
+    </div> -->
     <!-- <div class="z-dialog">
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
@@ -39,7 +39,7 @@
         @mapEvent="mapEvent"
       ></el-upload-base>
       <el-button size="medium" @click="confidenceClick" type="primary">确定</el-button>
-    </div>-->
+    </div> -->
   </div>
 </template>
 <script>
@@ -64,7 +64,8 @@ export default {
       uploadProps1: {
         uploadSure: false,
         width: 100,
-        height: 100
+        height: 100,
+        tips:"文件支持格式为JPG,GIF,PNG和PDF"
       },
       dialogObj: {
         id: 110
@@ -91,7 +92,8 @@ export default {
         acceptType: [".png", ".jpg", ".gif", ".pdf"],
         url: "/api/test",
         size: 1,
-        limit: 2
+        limit: 2,
+        tips:"上传的图片文件单张大小不能超过5M，文件上传数量不能超过3。<br />文件支持格式为JPG,GIF,PNG和PDF"
       },
       uploadParams: {
         params1: "",

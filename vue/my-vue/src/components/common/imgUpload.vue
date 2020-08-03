@@ -19,6 +19,7 @@ methods方法：
   <div>
     <el-upload action="123" list-type="picture-card" :accept="'image/*'" :multiple="false" ref="addupload" :on-change="addhandlefileChange" :show-file-list="true" :auto-upload="false" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
       <i class="el-icon-plus"></i>
+      <div slot="tip" class="el-upload__tip" v-html="uploadProps.tips"></div>
     </el-upload>
     <div style="height:24px;line-height:24px;font-size:14px;" v-show="name"><span style="font-size:12px;font-weight:bold;color:#333;">文件名：</span>{{name}}</div>
       <img :src="file.url" alt="" ref='imgWH' style="opacity:0;position:fixed;top:0;left:0;z-index:-10000">

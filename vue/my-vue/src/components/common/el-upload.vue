@@ -48,11 +48,7 @@ methods方法：
       :on-exceed="handelExceed"
     >
       <el-button slot="trigger" size="mini" type="primary">选取文件</el-button>
-      <div slot="tip" class="el-upload__tip">
-        上传的图片文件单张大小不能超过{{uploadProps.size}}M，文件同时上传数量不能超过{{uploadProps.limit}}。
-        <br />
-        文件支持格式为{{acceptType.toString()}}
-      </div>
+      <div slot="tip" class="el-upload__tip" v-html="uploadProps.tips"></div>
     </el-upload>
   </div>
 </template>
