@@ -8,7 +8,7 @@ template结构：
         :uploadParams="uploadParams"
         @mapEvent="mapEvent"
       ></el-upload-base>
-      <el-button size="medium" @click="confidenceClick" type="primary">确定</el-button>
+      <el-button size="medium" @click="uploadProps.uploadSure=!uploadProps.uploadSure" type="primary">确定</el-button>
     </div> 
 data 数据：
     //上传配置
@@ -29,9 +29,6 @@ methods方法：
   mapEvent(data){
     console.log(data);
   },
-  confidenceClick() {
-      this.uploadProps.uploadSure = !this.uploadProps.uploadSure;//触发上传事件
-  }
 -->
 <template>
   <div>
@@ -97,10 +94,14 @@ export default {
       this.$message.error("超出文件上传数量限制！");
     },
     uploadAction() {
+      // 做校验
+      // const validData = this.validParams(this.uploadParams);
+      // 不做校验
+      const validData = this.uploadParams;
       let params = new FormData();
-      for (const key in this.uploadParams) {
-        if (this.uploadParams.hasOwnProperty(key)) {
-          const element = this.uploadParams[key];
+      for (const key in validData) {
+        if (validData.hasOwnProperty(key)) {
+          const element = validData[key];
           params.append(key, element);
         }
       }
@@ -115,7 +116,34 @@ export default {
         })
         .then(res => {
           console.log(res, "666");
+          //  if (res.data.code && res.data.code == 200) {
+          //   this.$message({
+          //     type: "success",
+          //     message: "操作成功!"
+          //   });
+          //   this.$emit("mapEvent");
+          // } else {
+          //   this.$message({
+          //     type: "error",
+          //     message: res.data.msg
+          //   });
+          // }
         });
+    },
+    //把空的属性删除，数组转字符串
+    validParams(formData) {
+      let params = Object.assign({}, formData);
+      for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+          const element = params[key];
+          if (!element || element.length==0) {
+            this.$delete(params, key);
+          }else if(Array.isArray(element)){
+            params[key] = JSON.stringify(params[key])
+          }
+        }
+      }
+      return params;
     }
   },
   mounted() {},

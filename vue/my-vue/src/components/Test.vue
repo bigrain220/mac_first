@@ -32,14 +32,14 @@
         <span v-color="'#ccc'">#ccc</span>
       </div>
     </div>
-    <!-- <div>
+    <div>
       <el-upload-base
         :uploadProps="uploadProps2"
         :uploadParams="uploadParams"
         @mapEvent="mapEvent"
       ></el-upload-base>
-      <el-button size="medium" @click="confidenceClick" type="primary">确定</el-button>
-    </div> -->
+      <el-button size="medium" @click="uploadProps2.uploadSure=!uploadProps2.uploadSure" type="primary">确定</el-button>
+    </div>
   </div>
 </template>
 <script>
@@ -129,9 +129,6 @@ export default {
         });
       });
     },
-    confidenceClick() {
-      this.uploadProps.uploadSure = !this.uploadProps.uploadSure;
-    }
   },
   created() {
     this.dealLineData();
