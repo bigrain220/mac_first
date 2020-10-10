@@ -15,10 +15,10 @@
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
     </div>-->
     <!-- <date-picker></date-picker> -->
-    <!-- <div>
+    <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
       <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
-    </div>-->
+    </div>
     <!-- <filterTable></filterTable> -->
     <div>
       <div>
@@ -132,6 +132,7 @@ export default {
   },
   created() {
     this.dealLineData();
+    console.log(this.lineEchartsObj)
   },
   // 路由跳转确认
   beforeRouteLeave(to, from, next) {
