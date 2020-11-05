@@ -15,12 +15,12 @@
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
     </div>-->
     <!-- <date-picker></date-picker> -->
-    <div>
+    <!-- <div>
       <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
       <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
-    </div>
+    </div> -->
     <!-- <filterTable></filterTable> -->
-    <div>
+    <!-- <div>
       <div>
         自动聚焦：
         <input type="text" v-focus />
@@ -31,14 +31,13 @@
         <span v-color="'blue'">blue</span>
         <span v-color="'#ccc'">#ccc</span>
       </div>
-    </div>
-    <div>
-      <el-upload-base
-        :uploadProps="uploadProps2"
-        :uploadParams="uploadParams"
-        @mapEvent="mapEvent"
-      ></el-upload-base>
+    </div> -->
+    <!-- <div>
+      <el-upload-base :uploadProps="uploadProps2" :uploadParams="uploadParams"></el-upload-base>
       <el-button size="medium" @click="uploadProps2.uploadSure=!uploadProps2.uploadSure" type="primary">确定</el-button>
+    </div> -->
+    <div>
+      <el-upload-single :uploadProps="uploadProps3" :uploadParams="uploadParams"></el-upload-single>
     </div>
   </div>
 </template>
@@ -57,7 +56,8 @@ export default {
     datePicker: () => import("./common/datePicker"),
     lineEcharts: () => import("./common/lineEcharts"),
     filterTable: () => import("./common/table-filters"),
-    elUploadBase: () => import("./common/el-upload")
+    elUploadBase: () => import("./common/elUploadBase"),
+    elUploadSingle: () => import("./common/elUploadSingle")
   },
   data() {
     return {
@@ -65,7 +65,7 @@ export default {
         uploadSure: false,
         width: 100,
         height: 100,
-        tips:"文件支持格式为JPG,GIF,PNG和PDF"
+        tips: "文件支持格式为JPG,GIF,PNG和PDF"
       },
       dialogObj: {
         id: 110
@@ -93,7 +93,15 @@ export default {
         url: "/api/test",
         size: 1,
         limit: 2,
-        tips:"上传的图片文件单张大小不能超过5M，文件上传数量不能超过3。<br />文件支持格式为JPG,GIF,PNG和PDF"
+        tips: "上传的图片文件单张大小不能超过5M，文件上传数量不能超过3。<br />文件支持格式为JPG,GIF,PNG和PDF",
+        btnText: "选择"
+      },
+      uploadProps3:{
+        acceptType: [".png", ".jpg", ".gif", ".pdf"],
+        url: "/api/test",
+        size: 1,
+        tips: "上传的文件大小不能超过5M,文件支持格式为JPG,GIF,PNG和PDF",
+        btnText: "选择"
       },
       uploadParams: {
         params1: "",
@@ -147,7 +155,7 @@ export default {
   mounted() {
     var _this = this;
     // console.log(_this.$route.fullPath)
-    window.onbeforeunload = function(e) {
+    window.onbeforeunload = function (e) {
       if (_this.$route.fullPath == "/test") {
         e = e || window.event;
         // 兼容IE8和Firefox 4之前的版本
