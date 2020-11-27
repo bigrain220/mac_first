@@ -15,10 +15,12 @@
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>
     </div>-->
     <!-- <date-picker></date-picker> -->
-    <!-- <div>
-      <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
-      <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button>
-    </div> -->
+    <div>
+      <!-- <line-echarts :lineEchartsObj=lineEchartsObj></line-echarts>
+      <el-button type="primary" @click="lineEchartsObj.inter_val+=1">增大inter_val</el-button> -->
+      <line-echarts-demo :lineEchartsObj="testObj"></line-echarts-demo>
+      <el-button type="primary" @click="testObj.self.title.text=Date.now()">改变数据</el-button>
+    </div>
     <!-- <filterTable></filterTable> -->
     <!-- <div>
       <div>
@@ -36,9 +38,9 @@
       <el-upload-base :uploadProps="uploadProps2" :uploadParams="uploadParams"></el-upload-base>
       <el-button size="medium" @click="uploadProps2.uploadSure=!uploadProps2.uploadSure" type="primary">确定</el-button>
     </div> -->
-    <div>
+    <!-- <div>
       <el-upload-single :uploadProps="uploadProps3" :uploadParams="uploadParams"></el-upload-single>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -57,7 +59,8 @@ export default {
     lineEcharts: () => import("./common/lineEcharts"),
     filterTable: () => import("./common/table-filters"),
     elUploadBase: () => import("./common/elUploadBase"),
-    elUploadSingle: () => import("./common/elUploadSingle")
+    elUploadSingle: () => import("./common/elUploadSingle"),
+    lineEchartsDemo: () => import("./common/lineEchartsDemo"),
   },
   data() {
     return {
@@ -87,6 +90,21 @@ export default {
           }
         }
       },
+      testObj: {
+        id: "line-echarts",
+        xData: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        yData: [
+          [120, 132, 101, 134, 90, 230, 210], [220, 182, 191, 234, 290, 330, 310], [150, 232, 201, 154, 190, 330, 410], [320, 332, 301, 334, 390, 330, 320], [820, 932, 901, 934, 1290, 1330, 1320]
+        ],
+        nameArr: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎'],
+        interVal: 1,
+        //自定义配置
+        self: {
+          title: {
+            text: "自定义标题"
+          }
+        }
+      },
       uploadProps2: {
         uploadSure: false,
         acceptType: [".png", ".jpg", ".gif", ".pdf"],
@@ -96,7 +114,7 @@ export default {
         tips: "上传的图片文件单张大小不能超过5M，文件上传数量不能超过3。<br />文件支持格式为JPG,GIF,PNG和PDF",
         btnText: "选择"
       },
-      uploadProps3:{
+      uploadProps3: {
         acceptType: [".png", ".jpg", ".gif", ".pdf"],
         url: "/api/test",
         size: 1,

@@ -61,7 +61,7 @@ export default {
             "width:220px;padding:0;box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);height:" +
             (40 + this.nameArr.length * 40) +
             "px",
-          formatter: function(params) {
+          formatter: function (params) {
             var htmlStr = "";
             for (var i = 0; i < params.length; i++) {
               var tem = params[i].name;
@@ -133,7 +133,7 @@ export default {
       };
       this.myChart.setOption(option);
       //echarts点击事件
-      this.myChart.on("legendselectchanged", function(params) {
+      this.myChart.on("legendselectchanged", function (params) {
         var legend_option = this.getOption();
         var selectTotal = 0;
         var tem = Object.values(params.selected);
@@ -188,28 +188,27 @@ export default {
     this.initEcharts();
     this.setEcharts();
     // console.log(this.x_data, this.y_data, this.nameArr, this.colorArr);
-    var that = this;
-     window.addEventListener("resize", function() {
-      that.myChart ? that.myChart.resize() : "";
+    window.addEventListener("resize", () => {
+      this.myChart ? this.myChart.resize() : "";
     });
   },
   computed: {
-    x_data: function() {
+    x_data: function () {
       return this.lineEchartsObj.x_data;
     },
-    y_data: function() {
+    y_data: function () {
       return this.lineEchartsObj.y_data;
     },
-    nameArr: function() {
+    nameArr: function () {
       return this.lineEchartsObj.nameArr;
     },
-    colorArr: function() {
+    colorArr: function () {
       return this.lineEchartsObj.colorArr;
     },
-    inter_val: function() {
+    inter_val: function () {
       return this.lineEchartsObj.inter_val;
     },
-    self: function() {
+    self: function () {
       return this.lineEchartsObj.self;
     }
   },
