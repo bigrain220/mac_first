@@ -2,10 +2,10 @@
   <div>
     <!-- <keywordsTxt @getTxt="getTxt"></keywordsTxt> -->
     <!-- <vuexTemplate></vuexTemplate> -->
-    <!-- <div class="img-upload">
+    <div class="img-upload">
      <img-upload :uploadProps=uploadProps1 @mapEvent="mapEvent"></img-upload>
      <el-button  @click="uploadProps1.uploadSure=!uploadProps1.uploadSure">上传事件</el-button>
-    </div> -->
+    </div>
     <!-- <div class="z-dialog">
      <z-dialog v-if="dialogVisible.dialog1" :dialogObj="dialogObj" @dialogEvent="dialogEvent"></z-dialog>
      <el-button  @click="dialogVisible.dialog1=true">显示dialog</el-button>

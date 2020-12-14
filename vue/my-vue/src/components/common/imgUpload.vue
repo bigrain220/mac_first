@@ -17,7 +17,7 @@ methods方法：
 
 <template>
   <div>
-    <el-upload action="123" list-type="picture-card" :accept="'image/*'" :multiple="false" ref="addupload" :on-change="addhandlefileChange" :show-file-list="true" :auto-upload="false" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+    <el-upload action="123" list-type="picture-card" :accept="'image/*'" file-list="test" :multiple="false" ref="addupload" :on-change="addhandlefileChange" :show-file-list="true" :auto-upload="false" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
       <i class="el-icon-plus"></i>
       <div slot="tip" class="el-upload__tip" v-html="uploadProps.tips"></div>
     </el-upload>
@@ -42,7 +42,8 @@ export default {
       name: "",
       path: "",
       dialogImageUrl: "",
-      dialogVisible: false
+      dialogVisible: false,
+       test: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
     };
   },
   methods: {
