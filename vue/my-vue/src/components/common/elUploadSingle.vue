@@ -24,16 +24,20 @@ export default {
   methods: {
     beforeUpload(file) {
       // console.log(file)
-      let arr = file.name.split('.');
       //判断上传文件类型
-      if (!['png', 'jpg', 'gif', 'pdf'].includes(arr[arr.length - 1])) {
+      const type = file.name.substring(file.name.lastIndexOf("."));
+      const isType = this.acceptType.indexOf(type.toLowerCase()) > -1;
+      //判断上传文件大小
+      const isSize = file.size / 1024 / 1024 <= this.uploadProps.size;
+ 
+      if (!isType) {
         this.$message.warning("文件支持格式为: " + this.acceptType.toString() + " !");
         //判断上传文件大小
-      } else if (file.size / 1024 / 1024 > this.uploadProps.size) {
+      } else if (!isSize) {
         this.$message.warning("上传文件大小不能超过: " + this.uploadProps.size + "M");
       } else {
         let params = new FormData();
-        let validData = Object.assign({}, this.query);
+        let validData = Object.assign({}, this.uploadParams);
         for (const key in validData) {
           if (validData.hasOwnProperty(key)) {
             const element = validData[key];
